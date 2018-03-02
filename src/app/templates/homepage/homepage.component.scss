@@ -1,0 +1,154 @@
+.table {
+  margin-top: 10px;
+}
+
+.dropdown {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.text {
+  font-family: 'Rubik', sans-serif;
+  font-size: larger;
+  margin-right: 10px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.button-right {
+  text-align: right;
+  padding: 13px;
+}
+
+.font-setting {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+}
+
+/deep/ {
+  .handsontable tr td {
+    text-align: center;
+    height: 40px;
+    vertical-align: middle;
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+
+  .handsontable table th {
+    text-color: #B2B2FF; /* pink ish */
+    background-color: #ffffff; /* red */
+    height: 40px;
+    vertical-align: middle;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 700;
+  }
+
+  .ht_master tr:nth-of-type(odd) > td {
+    background-color: #f9f9f9;
+  }
+
+  .ht_clone_top_left_corner th {
+    border-bottom: 1px solid #f9f9f9;
+  }
+
+  .nav-tabs .nav-link.active {
+    background: #153343;
+    color: #fefefe;
+  }
+
+  .nav-tabs .nav-link {
+    color: #6C8784;
+  }
+
+  .page-item.active .page-link {
+    background-color: #153343;
+    border-color: #153343;
+  }
+
+  .modal-header {
+    background-color: #153343;
+
+  }
+}
+
+.search-box {
+  display: flex;
+  //justify-content: flex-end;
+}
+
+.border-box {
+  border: 1px dotted #cbcbcb;
+  //width: 88vw;
+  //height: 4vw;
+  margin-top: 38px;
+  margin-bottom: 38px;
+  display: flex;
+  justify-content: center;
+  background-color: #f9f9f9;
+
+}
+
+.btn-document {
+  background-color: #153343;
+  border-color: #153343;
+}
+
+.btn-user {
+  background-color: #696969;
+  border-color: #696969;
+}
+
+.border-modal1 {
+  border: 0;
+  border-shadow: 0px 1px 6px 0;
+  background-color: #f9f9f9;
+
+}
+
+.border-modal2 {
+  border: 0;
+  border-shadow: 0px 1px 6px 0;
+}
+
+.modal-body {
+  padding: 0px 0px 12px 15px;
+}
+
+.button-modal2 {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.button-modal1 {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.button-group {
+  //display: flex;
+  //justify-content: center;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.btn1:active, .btn2:active, .btn3:active {
+  background-color: #162e5b;
+}
+
+.table-search {
+  //border-radius: 24px;
+  width: 451px;
+}
+
+//
+.search-icon {
+  //border-radius: 49px;
+  background-color: #153343;
+  border-color: #153343;
+}

@@ -1,0 +1,92 @@
+<div class="sidebar">
+  <div class="burger-menu">
+    <i class="fa fa-bars fa-2x"></i>
+  </div>
+  <div class="collapse-menu">
+    <ul>
+      <li routerLinkActive="active-li">
+        <a [routerLink]="['/homepage']">
+          <i class="fa fa-file-text-o" aria-hidden="true">Contracts</i>
+        </a>
+      </li>
+      <li routerLinkActive="active-li">
+        <a [routerLink]="['/dashboard']">
+          <i class="fa fa-file-o" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li routerLinkActive="active-li">
+        <a [routerLink]="['/fiscal']">
+          <i class="fa fa-clock-o" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li routerLinkActive="active-li">
+        <a [routerLink]="['/project-management', 'list']">
+          <i class="fa fa-clock-o" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li routerLinkActive="active-li">
+        <a [routerLink]="['/logs']">
+          <i class="fa fa-tags" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="menu">
+    <ul>
+      <li class="navbar-logo" routerLinkActive="">
+        <a class="icon-desktop-logo" [routerLink]="['']">
+          <!--<img src="../../../assets/images/price-tag.png">-->
+          <img src="../../../assets/images/superhero2.png">
+          <!--<i class="fas fa-4x fa-tags" aria-hidden="true"></i>-->
+          <div>HERO</div>
+        </a>
+      </li>
+      <li class="navbar-profile" routerLinkActive="">
+        <a class="icon-desktop" [routerLink]="['']">
+          <!--<img src="../../../assets/images/price-tag.png">-->
+          <img src="../../../assets/images/user.png">
+          <!--<i class="fas fa-4x fa-tags" aria-hidden="true"></i>-->
+          <div class="icon-margin">User</div>
+        </a>
+      </li>
+      <li  class="icon-desktop" routerLinkActive="">
+        <a class="icon-desktop" [routerLink]="['']">
+          <!--<img src="../../../assets/images/price-tag.png">-->
+          <img src="../../../assets/images/speedometer.png">
+          <!--<i class="fas fa-4x fa-tags" aria-hidden="true"></i>-->
+          <div class="icon-margin">Dashboard</div>
+        </a>
+      </li>
+      <li class="icon-desktop" routerLinkActive="">
+        <a class="icon-desktop" [routerLink]="['']">
+          <img src="../../../assets/images/contract.png">
+          <!--<img src="../../../assets/images/writing.png">-->
+          <!--<i class="far fa-4x	fa-file-alt"></i>-->
+          <div class="icon-margin">Documents</div>
+        </a>
+      </li>
+      <!--<li routerLinkActive="active-li">-->
+        <!--<a class="icon-desktop" [routerLink]="['']">-->
+          <!--&lt;!&ndash;<i class="far fa-4x	fa-file"></i>&ndash;&gt;-->
+          <!--<img src="../../../assets/images/templates.png">-->
+          <!--<div>Templates</div>-->
+        <!--</a>-->
+      <!--</li>-->
+      <li class="icon-desktop" routerLinkActive="">
+        <a class="icon-desktop" [routerLink]="['']">
+          <img src="../../../assets/images/clock.png">
+          <!--<i class="far fa-4x fa-clock"></i>-->
+          <div class="icon-margin">Expired</div>
+        </a>
+      </li>
+      <li class="icon-desktop" routerLinkActive="active-li">
+        <a class="icon-desktop" [routerLink]="['/homepage']">
+          <img src="../../../assets/images/settings.png">
+
+          <!--<i class="far fa-4x fa-clock"></i>-->
+          <div class="icon-margin">Settings</div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

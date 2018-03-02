@@ -1,0 +1,138 @@
+.sidebar {
+  box-shadow: 0 0 5px 5px rgba(61, 119, 180, 0.12);
+  position: fixed;
+  z-index: 1000;
+  font-family: 'Pathway Gothic One', sans-serif;
+  font-weight: 120;
+  //background: #42729B;
+  background: #153343;
+  color: #fefefe;
+  @media (min-width: 992px) {
+    width: 126px;
+    height: 100%;
+  }
+  @media (max-width: 991px) {
+    top: 0;
+    height: 50px;
+    width: 100%;
+  }
+}
+
+.brand {
+  @media (min-width: 992px) {
+    padding: 30px 10px 10px 10px;
+    text-align: center;
+    img {
+      width: 150px;
+    }
+  }
+  @media (max-width: 991px) {
+    position: fixed;
+    top: 5px;
+    left: 10px;
+    img {
+      width: 70px;
+    }
+  }
+}
+
+.burger-menu {
+  cursor: pointer;
+  @media (max-width: 991px) {
+    position: fixed;
+    top: 10px;
+    right: 30px;
+  }
+  @media (min-width: 992px) {
+    display: none;
+  }
+}
+
+a {
+  color: #fefefe;
+}
+
+.menu {
+  //margin-top: 15px;
+  ul {
+    list-style-type: none;
+    padding: 0;
+    li {
+      margin-top: 0px;
+      padding: 7px 0 7px 0px;
+    }
+  }
+  @media (max-width: 991px) {
+    display: none;
+  }
+}
+
+.collapse-menu {
+  z-index: 1000;
+  width: 100%;
+  margin-top: 50px;
+  background: #162e5b;
+  padding: 20px 0 10px 0;
+  @media (min-width: 992px) {
+    display: none;
+  }
+  ul {
+    padding: 0;
+    list-style-type: none;
+    li {
+      padding: 7px 0 7px 30px;
+    }
+  }
+}
+
+.active-li {
+  background: #1F618D;
+  //width: 100%;
+  //-webkit-animation: neon1 1.5s;
+  //animation: neon1 1.5s;
+  //-webkit-filter: drop-shadow(0px 0px 8px rgba(0, 231, 255, 0.8));
+  //-webkit-transition: all 0.5s linear;
+  //-o-transition: all 0.5s linear;
+  //transition: all 0.5s linear;
+}
+
+.fa {
+  width: 15px;
+}
+
+.icon-desktop {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 17px;
+}
+
+a:hover {
+  -webkit-animation: pulse 1s;
+  animation: pulse 1s;
+}
+
+.navbar-logo {
+  background-color: #153343;
+  margin-top: 0;
+  font-weight: 700;
+  font-size: 28px;
+}
+
+//.navbar-profile {
+//  border-bottom: 1px dotted;
+//  border-top: 1px dotted;
+//}
+
+.icon-desktop-logo {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-margin {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
