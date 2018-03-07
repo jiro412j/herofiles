@@ -34,7 +34,6 @@ export class HomepageComponent implements OnInit {
   input: any;
   currentPage: number;
   dataTable: any;
-  title: any;
   documentNew: any;
   documentDetail: any;
   companyInitial: any;
