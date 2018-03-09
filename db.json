@@ -116,6 +116,23 @@
         }
       ],
       "id": 10
+    },
+    {
+      "table": [
+        {
+          "label": "label1",
+          "value": "lavue1"
+        },
+        {
+          "label": "label2",
+          "value": "lavue2"
+        },
+        {
+          "label": "label3",
+          "value": "lavue3"
+        }
+      ],
+      "id": 11
     }
   ],
   "sort": [
@@ -157,6 +174,36 @@
           "value": "lavue3"
         }
       ]
+    }
+  ],
+  "field": [
+    {
+      "name": "Name",
+      "condition": "number",
+      "key": "required",
+      "id": 1
+    },
+    {
+      "name": "Start Date",
+      "key": "required",
+      "id": 2
+    },
+    {
+      "name": "Start Date",
+      "condition": "number",
+      "key": "required",
+      "id": 3
+    },
+    {
+      "name": "Item",
+      "key": "required",
+      "id": 4
+    },
+    {
+      "name": "Genreal",
+      "condition": "number",
+      "key": "optional",
+      "id": 5
     }
   ]
 }

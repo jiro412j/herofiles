@@ -7,38 +7,56 @@
   <!--<button class="btn btn-outline-danger" (click)="openModal(template)">User Setting</button>-->
   <!--</div>-->
 </div>
-<hr style="background-color: #73B1D6; margin-top: 0px">
-
-<div class="border-box">
-  <div class="col-md-6 search-box">
-    <form class="form-inline">
-      <input class="form-control mr-sm-2 table-search" type="search" placeholder="Search" aria-label="Search"
-             name="Search" [(ngModel)]="input">
-      <button class="btn btn-primary my-2 my-sm-0 search-icon" type="submit" (click)="search(input)">
-        <i class="fas fa-search"></i>
-      </button>
-    </form>
-  </div>
-  <div class="col-md-6 button-right">
-    <button class="btn btn-success btn-document" (click)="open(content)"><img
-      src="../../../assets/images/file.png" style="margin-right: 5px ">Document Setting
-    </button>
-    <button class="btn btn-danger btn-user" (click)="openModal(template)"><img src="../../../assets/images/settings1.png"
-                                                                      style="margin-right: 5px ">User Setting
-    </button>
-  </div>
+<!--<hr style="background-color: #73B1D6; margin-top: 0px">-->
+<div class="row">
+    <div class="col-md-12">
+        <h6 style="color: #839192">Quick Statistic</h6>
+        <hr>
+    </div>
 </div>
+<div class="row statisitc-row">
+    <div class="col-md-3">
+        <div class="statistic-box1">
+            <h5 style="color: #839192; padding: 10px">Document Type</h5>
+            <span>{{totalItems}}</span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="statistic-box2">
+            <h5 style="color: #839192; padding: 10px">Document Field</h5>
+            <span>{{totalItems}}</span>
+        </div>
+    </div>
+</div>
+
+
+<div class="" style="margin-top: 10px">
+    <tabset>
+        <tab heading="Document Type" (select)="doc()"></tab>
+        <tab heading="Document Field" (select)="company()"></tab>
+    </tabset>
+</div>
+
+<!--<div class="border-box">-->
+  <!--<div class="col-md-6 search-box">-->
+    <!--<form class="form-inline">-->
+      <!--<input class="form-control mr-sm-2 table-search" type="search" placeholder="Search" aria-label="Search"-->
+             <!--name="Search" [(ngModel)]="input">-->
+      <!--<button class="btn btn-primary my-2 my-sm-0 search-icon" type="submit" (click)="search(input)">-->
+        <!--<i class="fas fa-search"></i>-->
+      <!--</button>-->
+    <!--</form>-->
+  <!--</div>-->
+  <!--<div class="col-md-6 button-right">-->
+    <!--<button class="btn btn-success btn-document" (click)="open(content)"><img-->
+      <!--src="../../../assets/images/file.png" style="margin-right: 5px ">Document Setting-->
+    <!--</button>-->
+  <!--</div>-->
+<!--</div>-->
 <!--<div class="border-table">-->
 
   <div class="row">
     <div class="col-md-6">
-      <div class="" style="margin-top: 10px">
-        <tabset>
-          <tab heading="Company List" (select)="doc()"></tab>
-          <tab heading="Document List" (select)="company()"></tab>
-        </tabset>
-      </div>
-
       <ng-template #content let-c="close" let-d="dismiss">
         <div class="modal-header">
           <h4 class="modal-title" style="color: #ffffff;">Document Setting</h4>
@@ -50,22 +68,14 @@
           <div class="row">
             <div class="border-modal1 col-md-8" *ngIf="showFirst">
               <div class="row" style="margin-top: 10px">
-                <div class="col-md-6">
-                  <span> Document Name</span>
-                  <div style="margin-top: 10px">
-                    <p-dropdown [options]="cities1" [(ngModel)]="selectedCity1" (onChange)="postSort()"></p-dropdown>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <form class="form-inline">
-                    <span>New Document</span>
-                    <input style="margin-top: 10px" class="form-control" [(ngModel)]="documentNew" name="newDocument">
-                  </form>
+                <div class="col-md-12">
+                    <span>Document Type</span>
+                    <input style="margin-top: 10px" class="form-control" [(ngModel)]="documentType" name="newDocument">
                 </div>
               </div>
               <div class="row" style="margin-top: 10px">
                 <div class="col-md-12">
-                  <span>Document Detail</span>
+                  <span>Document Description</span>
                   <input style="margin-top: 10px" class="form-control" [(ngModel)]="documentDetail" name="documentDetail">
                 </div>
               </div>
@@ -77,68 +87,133 @@
             </div>
             <div class="border-modal1 col-md-8" *ngIf="showSecond">
               <div class="row" style="margin-top: 10px">
-                <div class="col-md-12" *ngFor="let table of dataTable; let index = index">
-                  <span>Title{{table.id}}</span>
-                  <div style="margin-top: 10px">
-                    <p-dropdown  [options]="dropTitle" [(ngModel)]="selectedTitle[table.id]"
-                                (onChange)="postDropTable()"></p-dropdown>
-                    <!--<p-dropdown *ngIf="addtable" [options]="dropTitle" [(ngModel)]="selectedTitle[table.id]"-->
-                                <!--(onChange)="postDropTable()"></p-dropdown>-->
-                    <img (click)="addTable(table.id)" style="margin-right: 10px; margin-left: 10px" src="../../../assets/images/plus.png">
-                      <img (click)="removeTable(table.id)" src="../../../assets/images/forbidden.png">
+                  <!--<div class="col-md-5">-->
+                      <!--<span>Document Field List</span>-->
+                  <!--</div>-->
+                  <div class="col-md-6 field-lists">
+                      <!--<ul>-->
+                          <!--<li *ngFor="let field of Field; let index = index" pDraggable="Field"-->
+                              <!--(onDragStart)="dragStart($event,field)" (onDragEnd)="dragEnd($event)">-->
+                                <!--<div class="row">-->
+                                    <!--<div class="col-md-2">-->
+                                        <!--<span>{{field.name}}</span>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-4">-->
+                                        <!--<span>{{field.condition}}</span>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-2">-->
+                                        <!--<span>{{field.key}}</span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                          <!--</li>-->
+                      <!--</ul>-->
+                      <p-dataScroller [value]="Field" [rows]="10" [inline]="true" scrollHeight="300px">
+                          <p-header>
+                              Document Field List
+                          </p-header>
+                          <ng-template let-field pTemplate="body">
+                              <div class="row" style="border-bottom: 1px solid #D5D5D5;">
+                                  <div class="col-md-3 i">
+                                      <img src="../../../assets/images/field.png">
+                                  </div>
+                                  <div class="col-md-7">
+                                      <div class="row">
+                                          <div class="col-md-4">Name:</div>
+                                          <div class="col-md-8">{{field.name}}</div>
+
+                                          <div class="col-md-5">Condition:</div>
+                                          <div class="col-md-7">{{field.condition}}</div>
+
+                                          <div class="col-md-4">Key:</div>
+                                          <div class="col-md-8">{{field.key}}</div>
+
+                                      </div>
+                                  </div>
+                                  <div class="col-md-2">
+                                      <p-checkbox name="groupname" [value]="field" [(ngModel)]="fieldValue"></p-checkbox>
+                                  </div>
+                              </div>
+                          </ng-template>
+                      </p-dataScroller>
                   </div>
-                </div>
+                  <div class="col-md-6 user-list">
+                       <p-dataScroller [value]="fieldValue" [rows]="10" [inline]="true" scrollHeight="300px">
+                          <p-header>
+                              User Field List
+                          </p-header>
+                          <ng-template let-field pTemplate="body">
+                              <div class="row" style="border-bottom: 1px solid #D5D5D5;">
+                                  <div class="col-md-3 i">
+                                      <img src="../../../assets/images/field.png">
+                                  </div>
+                                  <div class="col-md-9">
+                                      <div class="row">
+                                          <div class="col-md-4">Name:</div>
+                                          <div class="col-md-8">{{field.name}}</div>
+
+                                          <div class="col-md-5">Condition:</div>
+                                          <div class="col-md-7">{{field.condition}}</div>
+
+                                          <div class="col-md-4">Key:</div>
+                                          <div class="col-md-8">{{field.key}}</div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </ng-template>
+                      </p-dataScroller>
+                  </div>
               </div>
-              <div class="row" style="margin-top: 10px">
-                <div class="col-md-10">
-                  <span>New Title</span>
-                  <input style="margin-top: 10px" class="form-control" [(ngModel)]="title" name="title">
-                </div>
-                <div class="col-md-2" style="text-align: center; padding: 36px 0 0 0;">
-                  <a (click)="postTable()"><img src="../../../assets/images/plus.png"></a>
-                  <!--<a><img src="../../../assets/images/forbidden.png"></a>-->
-                </div>
+                <hr>
+              <div class="row documentfield-add">
+                  <p-card title="Document Field">
+                      <div class="row fieldName">
+                          <div class="col-md-4">
+                              <span style="margin-right: 10px">Document Field Name</span>
+                          </div>
+                          <div class="col-md-8">
+                              <input style="margin-top: 10px" class="form-control" [(ngModel)]="fieldName" name="title">
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-4">
+                              <span style="margin-right: 10px">Document Field Condition</span>
+                          </div>
+                          <div class="col-md-8" style="margin-top: 10px">
+                              <p-dropdown [options]="cities1" [(ngModel)]="fieldCondition"></p-dropdown>
+                          </div>
+                      </div>
+                      <div class="row" style="margin-top: 10px">
+                          <div class="col-md-6" style="text-align: end;">
+                              <p-radioButton name="groupname" value="required" label="Required"
+                                             [(ngModel)]="req"></p-radioButton>
+                          </div>
+                          <div class="col-md-6" style="text-align: start;">
+                              <p-radioButton name="groupname" value="optional" label="Optional"
+                                             [(ngModel)]="req"></p-radioButton>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-12" style="text-align: end;">
+                              <a (click)="postTable()"><img src="../../../assets/images/plus.png"></a>
+                              <!--<a><img src="../../../assets/images/forbidden.png"></a>-->
+                          </div>
+                      </div>
+                  </p-card>
               </div>
               <div class="row">
                 <div class="button-modal1 col-md-6">
                   <button class="btn-primary" (click)="showFirstModel()">Back</button>
                 </div>
                 <div class="button-modal2 col-md-6">
-                  <button class="btn-primary" (click)="showThirdModel()">Next</button>
-                </div>
-              </div>
-            </div>
-            <div class="border-modal1 col-md-8" *ngIf="showThird">
-              <div class="row" style="margin-top: 10px">
-                <div class="col-md-12">
-                  <span> Company Name</span>
-                  <div>
-                    <input style="margin-top: 10px" class="form-control" [(ngModel)]="companyNew" name="newCompany">
-                  </div>
-                </div>
-              </div>
-              <div class="row" style="margin-top: 10px">
-                <div class="col-md-12">
-                  <span>Company Initials Name</span>
-                  <input style="margin-top: 10px" class="form-control" [(ngModel)]="companyInitial" name="initialCompany">
-                </div>
-              </div>
-              <div class="row">
-                <div class="button-modal1 col-md-6">
-                  <button class="btn-primary" (click)="showSecondModel()">Back</button>
-                </div>
-                <div class="button-modal2 col-md-6">
                   <button class="btn-primary" (click)="saveData()">Accept</button>
                 </div>
               </div>
             </div>
-            <div class="border-modal2 col-sm-4">
+            <div class="border-modal2 col-md-4">
               <div class="button-group">
                 <button class="btn-outline-primary btn1" style="border-radius: 30px" (click)="showFirstModel()">1
                 </button>
                 <button class="btn-outline-primary btn2" style="border-radius: 30px" (click)="showSecondModel()">2
-                </button>
-                <button class="btn-outline-primary btn3" style="border-radius: 30px" (click)="showThirdModel()">3
                 </button>
               </div>
               <div class="row">
@@ -163,22 +238,35 @@
         <!--</div>-->
       </ng-template>
     </div>
-    <div class="col-md-6 search-box">
-      <!--<div class="dropdown">-->
-      <!--<span class="text">Sort By:</span>-->
-      <!--<p-dropdown [options]="cities1" [(ngModel)]="selectedCity1" (onChange)="postSort()"></p-dropdown>-->
-      <!--</div>-->
-      <!--</div>-->
-      <!--<form class="form-inline">-->
-      <!--<input class="form-control mr-sm-2 table-search" type="search" placeholder="Search" aria-label="Search" name="Search" [(ngModel)]="input">-->
-      <!--<button class="btn btn-outline-success my-2 my-sm-0 search-icon" type="submit" (click)="search(input)">-->
-      <!--<i class="fas fa-search"></i>-->
-      <!--</button>-->
-      <!--</form>-->
-    </div>
   </div>
 
   <div class="row">
+      <div class="col-md-6 search-box">
+          <form class="form-inline">
+              <input class="form-control mr-sm-2 table-search" type="search" placeholder="Search" aria-label="Search"
+                     name="Search" [(ngModel)]="input">
+              <button class="btn btn-primary my-2 my-sm-0 search-icon" type="submit" (click)="search(input)">
+                  <i class="fas fa-search"></i>
+              </button>
+          </form>
+      </div>
+      <div class="col-md-6 button-right">
+          <button class="btn btn-success btn-document" (click)="open(content)"><img
+                  src="../../../assets/images/file.png" style="margin-right: 5px ">Document Setting
+          </button>
+      </div>
+      <div class="pagination col-12">
+          <ngb-pagination [collectionSize]="totalItems" [(page)]="currentPage" [pageSize]="10" [maxSize]="5"
+          (pageChange)="pageChanged($event)" aria-label="Default pagination"></ngb-pagination>
+          <!--<pagination-->
+                  <!--[totalItems]="totalItems"-->
+                  <!--[(ngModel)]="currentPage"-->
+                  <!--(pageChanged)="pageChanged($event)"-->
+                  <!--pageBtnClass="btn"-->
+                  <!--[itemsPerPage]="10"-->
+                  <!--class="pull-left">-->
+          <!--</pagination>-->
+      </div>
     <div class="col-md-12" *ngIf="documentList">
       <div class="table">
         <hotTable [data]="data"
@@ -202,18 +290,6 @@
                   [colWidths]="colWidths">
         </hotTable>
       </div>
-    </div>
-    <div class="pagination col-12">
-      <!--<ngb-pagination [collectionSize]="dataList" [(page)]="page" [pageSize]="10" [maxSize]="5"-->
-      <!--(pageChange)="pageChange()" aria-label="Default pagination"></ngb-pagination>-->
-      <pagination
-        [totalItems]="totalItems"
-        [(ngModel)]="currentPage"
-        (pageChanged)="pageChanged($event)"
-        pageBtnClass="btn"
-        [itemsPerPage]="10"
-        class="pull-left">
-      </pagination>
     </div>
   </div>
 <!--</div>-->

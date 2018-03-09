@@ -1,5 +1,8 @@
 .table {
   margin-top: 10px;
+  //box-shadow: 3px 3px 28px 3px #9E9E9E
+  box-shadow: 1px 2px 11px 0px #9E9E9E;
+
 }
 
 .dropdown {
@@ -36,6 +39,7 @@
     height: 40px;
     vertical-align: middle;
     font-family: 'Source Sans Pro', sans-serif;
+    //border: 0;
   }
 
   .handsontable table th {
@@ -45,6 +49,8 @@
     vertical-align: middle;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 700;
+    //border: 0;
+
   }
 
   .ht_master tr:nth-of-type(odd) > td {
@@ -56,7 +62,7 @@
   }
 
   .nav-tabs .nav-link.active {
-    background: #153343;
+    background: #5697ED;
     color: #fefefe;
   }
 
@@ -73,6 +79,14 @@
     background-color: #153343;
 
   }
+
+  .modal-content {
+    width: 1057px;
+  }
+
+  .modal-lg {
+    max-width: 1003px;
+  }
 }
 
 .search-box {
@@ -81,7 +95,7 @@
 }
 
 .border-box {
-  border: 1px dotted #cbcbcb;
+  //border: 1px dotted #cbcbcb;
   //width: 88vw;
   //height: 4vw;
   margin-top: 38px;
@@ -89,12 +103,15 @@
   display: flex;
   justify-content: center;
   background-color: #f9f9f9;
-
+  //box-shadow: 3px 3px 28px 3px #9E9E9E;
+  box-shadow: 1px 2px 11px 0px #9E9E9E;
 }
 
 .btn-document {
-  background-color: #153343;
-  border-color: #153343;
+  background-color: #1ABC9C;
+  border-color: #1ABC9C;
+  box-shadow: 1px 2px 11px 0px #9E9E9E;
+
 }
 
 .btn-user {
@@ -151,4 +168,64 @@
   //border-radius: 49px;
   background-color: #153343;
   border-color: #153343;
+}
+
+.statistic-box1 {
+  //box-shadow: 3px 3px 28px 3px #9E9E9E
+  box-shadow: 1px 2px 11px 0px #9E9E9E;
+  text-align: center;
+  font-size: 57px;
+  color: #E67E22;
+  background-color: #fff;
+}
+
+.statistic-box2 {
+  //box-shadow: 3px 3px 28px 3px #9E9E9E
+  box-shadow: 1px 2px 11px 0px #9E9E9E;
+  text-align: center;
+  font-size: 57px;
+  color: #17A589;
+  background-color: #fff;
+
+}
+
+.statisitc-row {
+  display: flex;
+  justify-content: center;
+}
+
+.documentfield-add {
+  margin-top: 10px;
+  flex-direction: column;
+  padding: 10px;
+  //background: #EAECEE;
+  //box-shadow: 10px 10px 5px -15px rgba(0, 0, 0, 0.75)
+}
+
+.fieldName {
+  align-items: center;
+}
+
+.field-list {
+  //background: #EAECEE;
+  //box-shadow: 10px 10px 5px -15px rgba(0, 0, 0, 0.75);
+  overflow: scroll;
+  //width: 200px;
+  height: 300px;
+}
+
+.user-list {
+  //background: #EAECEE;
+  //margin-left: 117px;
+  //box-shadow: 10px 10px 5px -15px rgba(0, 0, 0, 0.75);
+  overflow: scroll;
+  //height: 300px;
+}
+
+.i {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-right: 0;
 }
