@@ -10,15 +10,16 @@ class DocumentTypeSerializer(ModelControllerSerializer):
 
     class Meta:
         model = DocumentType
-        exclude = EXCLUDE_MODEL_CONTROLLER_FIELDS + ('alive',)
+        exclude = EXCLUDE_MODEL_CONTROLLER_FIELDS + ('deleted',)
 
     def create(self, validated_data):
         with transaction.atomic():
             fields_data = validated_data.pop('field')
             request_data = super(DocumentTypeSerializer, self).create(validated_data)
 
+            user = self.context['request'].user
             for field_data in fields_data:
-                DocumentField.objects.create(type=request_data, **field_data)
+                DocumentField.objects.create(type=request_data, created_user=user, updated_user=user, **field_data)
         return request_data
 
     def update(self, instance, validated_data):
@@ -26,8 +27,9 @@ class DocumentTypeSerializer(ModelControllerSerializer):
             fields_data = validated_data.pop('field')
             request_data = super(DocumentTypeSerializer, self).update(instance, validated_data)
 
+            user = self.context['request'].user
             fields = (instance.field).all()
             fields.delete()
             for field_data in fields_data:
-                DocumentField.objects.create(type=request_data, **field_data)
+                DocumentField.objects.create(type=request_data, created_user=user, updated_user=user, **field_data)
         return request_data

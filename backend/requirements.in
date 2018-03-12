@@ -26,3 +26,6 @@ django-cors-headers
 
 # bulk create
 django-bulk-update
+
+# Django safedelete
+django-safedelete

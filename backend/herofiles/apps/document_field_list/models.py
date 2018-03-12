@@ -1,7 +1,10 @@
 from django.db import models
-from herofiles.apps.commons.models import AbstractSoftModelController
+from model_controller.models import AbstractModelController
+from safedelete.models import SafeDeleteModel, SOFT_DELETE
 
-class DocumentFieldList(AbstractSoftModelController):
+class DocumentFieldList(AbstractModelController, SafeDeleteModel):
+    _safedelete_policy = SOFT_DELETE
+
     TEXT = 0
     NUMBER = 1
     DATE = 2

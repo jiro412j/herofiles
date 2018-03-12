@@ -1,8 +1,11 @@
 from django.db import models
-from herofiles.apps.commons.models import AbstractSoftModelController
+from model_controller.models import AbstractModelController
+from safedelete.models import SafeDeleteModel, HARD_DELETE_NOCASCADE
 from herofiles.apps.document_type.models import DocumentType
 
-class DocumentField(models.Model):
+class DocumentField(AbstractModelController, SafeDeleteModel):
+    _safedelete_policy = HARD_DELETE_NOCASCADE
+
     TEXT = 0
     NUMBER = 1
     DATE = 2

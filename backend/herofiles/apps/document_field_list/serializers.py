@@ -6,7 +6,7 @@ from herofiles.apps.document_field_list.models import DocumentFieldList
 class DocumentFieldListSerializer(ModelControllerSerializer):
     class Meta:
         model = DocumentFieldList
-        exclude = EXCLUDE_MODEL_CONTROLLER_FIELDS + ('alive',)
+        exclude = EXCLUDE_MODEL_CONTROLLER_FIELDS + ('deleted',)
 
     def create(self, validated_data):
         with transaction.atomic():
