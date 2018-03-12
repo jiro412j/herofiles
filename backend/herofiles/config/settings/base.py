@@ -28,7 +28,9 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    #'herofiles.apps.testapp',
+    'herofiles.apps.document_field',
+    'herofiles.apps.document_field_list',
+    'herofiles.apps.document_type',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
