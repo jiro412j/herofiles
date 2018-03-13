@@ -15,21 +15,21 @@ class DocumentTypeSerializer(ModelControllerSerializer):
     def create(self, validated_data):
         with transaction.atomic():
             fields_data = validated_data.pop('field')
-            request_data = super(DocumentTypeSerializer, self).create(validated_data)
+            request_data = super().create(validated_data)
 
             user = self.context['request'].user
             for field_data in fields_data:
-                DocumentField.objects.create(type=request_data, created_user=user, updated_user=user, **field_data)
-        return request_data
+                DocumentField.objects.create(document_type=request_data, created_user=user, updated_user=user, **field_data)
+            return request_data
 
     def update(self, instance, validated_data):
         with transaction.atomic():
             fields_data = validated_data.pop('field')
-            request_data = super(DocumentTypeSerializer, self).update(instance, validated_data)
+            request_data = super().update(instance, validated_data)
 
             user = self.context['request'].user
-            fields = (instance.field).all()
+            fields = instance.field.all()
             fields.delete()
             for field_data in fields_data:
-                DocumentField.objects.create(type=request_data, created_user=user, updated_user=user, **field_data)
-        return request_data
+                DocumentField.objects.create(document_type=request_data, created_user=user, updated_user=user, **field_data)
+            return request_data

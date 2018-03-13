@@ -10,5 +10,5 @@ class DocumentFieldListSerializer(ModelControllerSerializer):
 
     def create(self, validated_data):
         with transaction.atomic():
-            request_data = super(DocumentFieldListSerializer, self).create(validated_data)
-        return request_data
+            request_data = super().create(validated_data)
+            return request_data

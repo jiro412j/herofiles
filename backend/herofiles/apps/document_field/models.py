@@ -24,7 +24,7 @@ class DocumentField(AbstractModelController, SafeDeleteModel):
         (REQUIRED, 'Required'),
     )
 
-    type = models.ForeignKey(DocumentType, on_delete=models.CASCADE, related_name='field')
+    document_type = models.ForeignKey(DocumentType, on_delete=models.CASCADE, related_name='field')
     field_name = models.CharField(max_length=255, db_index=True, verbose_name='Field Name')
     condition = models.IntegerField(choices=DOCUMENTFIELD_CONDITION_CHOICES, verbose_name='Condition', db_index=True)
     key = models.IntegerField(choices=DOCUMENTFIELD_KEY_CHOICES, verbose_name='Key', db_index=True)
