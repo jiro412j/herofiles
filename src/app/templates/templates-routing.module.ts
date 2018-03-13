@@ -3,20 +3,22 @@ import {Routes, RouterModule} from '@angular/router';
 import {HomepageComponent} from './homepage/homepage.component';
 import {TemplatesComponent} from './templates.component';
 import {homepageRoutes} from './homepage/homepage.routes';
+import {userroutes} from './user-setting/user-setting-routing.module';
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: TemplatesComponent,
-    children: [
-      ...homepageRoutes,
-    ],
-  },
+    {
+        path: '',
+        component: TemplatesComponent,
+        children: [
+            ...homepageRoutes,
+            ...userroutes
+        ],
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
 export class TemplatesRoutingModule {
 }

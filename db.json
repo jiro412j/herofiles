@@ -1,124 +1,81 @@
 {
   "templates": [
     {
-      "Document_New": "a",
-      "Document_Detail": "a",
-      "Company_Name": "a",
-      "Company_Nickname": "a",
-      "id": 1
-    },
-    {
-      "Document_New": "a",
-      "Document_Detail": "a",
-      "Company_Name": "a",
-      "Company_Nickname": "a",
-      "id": 2
-    },
-    {
-      "Document_New": "hello",
-      "Document_Detail": "ge",
-      "Company_Name": "codium",
-      "Company_Nickname": "coduym",
-      "id": 3
-    },
-    {
-      "Document_New": "b",
-      "Document_Detail": "b",
-      "Company_Name": "b",
-      "Company_Nickname": "b",
-      "id": 4
-    },
-    {
-      "Document_New": "doc1",
-      "Document_Detail": "this is document 1",
-      "Company_Name": "Codium comppany",
-      "Company_Nickname": "Codium",
-      "id": 5
-    },
-    {
-      "id": 6
-    },
-    {
-      "Document_New": "asdf",
-      "Document_Detail": "asdf",
-      "Company_Name": "zxcvz",
-      "Company_Nickname": "zxcvzxcv",
-      "table": [
+      "Document_New": "Employee",
+      "Document_Detail": "This is employee",
+      "field": [
         {
-          "label": "c",
-          "value": "c",
+          "name": "Name",
+          "condition": "number",
+          "key": "required",
           "id": 1
         },
         {
-          "label": "z",
-          "value": "z",
+          "name": "Start Date",
+          "key": "required",
           "id": 2
         },
         {
-          "label": "v",
-          "value": "v",
-          "id": 3
+          "name": "Salary",
+          "condition": "number",
+          "key": "required",
+          "id": 6
         }
       ],
-      "id": 7
+      "id": 1
     },
     {
-      "Document_New": "asdf",
-      "Document_Detail": "asdf",
-      "Company_Name": "cccc",
-      "Company_Nickname": "ccc",
-      "table": [
+      "Document_New": "rental",
+      "Document_Detail": "this is rental",
+      "field": [
         {
-          "label": "a",
-          "value": "a"
+          "name": "Start Date",
+          "key": "required",
+          "id": 2
         },
         {
-          "label": "v",
-          "value": "v"
+          "name": "Item",
+          "key": "required",
+          "id": 4
+        },
+        {
+          "name": "Salary",
+          "condition": "number",
+          "key": "required",
+          "id": 6
+        },
+        {
+          "name": "Duration",
+          "condition": "date",
+          "key": "required",
+          "id": 8
         }
       ],
-      "id": 8
-    },
-    {
-      "Document_New": "qwqw",
-      "Document_Detail": "qwqw",
-      "Company_Name": "adafdas",
-      "Company_Nickname": "asdfadf",
       "table": [
         {
-          "label": "a",
-          "value": "a"
+          "label": "label1",
+          "value": "lavue1"
         },
         {
-          "label": "v",
-          "value": "v"
-        }
-      ],
-      "id": 9
-    },
-    {
-      "Document_New": "qqqq",
-      "Document_Detail": "qqqqq",
-      "Company_Name": "qqqq",
-      "Company_Nickname": "qqqq",
-      "table": [
-        {
-          "label": "q",
-          "value": "q"
+          "label": "label2",
+          "value": "lavue2"
         },
         {
-          "label": "q",
-          "value": "q"
+          "label": "label3",
+          "value": "lavue3"
         },
         {
-          "label": "f",
-          "value": "f"
-        }
-      ],
-      "id": 10
-    },
-    {
-      "table": [
+          "label": "label1",
+          "value": "lavue1"
+        },
+        {
+          "label": "label2",
+          "value": "lavue2"
+        },
+        {
+          "label": "label3",
+          "value": "lavue3"
+        },
         {
           "label": "label1",
           "value": "lavue1"
@@ -132,7 +89,7 @@
           "value": "lavue3"
         }
       ],
-      "id": 11
+      "id": 2
     }
   ],
   "sort": [
@@ -184,17 +141,6 @@
       "id": 1
     },
     {
-      "name": "Start Date",
-      "key": "required",
-      "id": 2
-    },
-    {
-      "name": "Start Date",
-      "condition": "number",
-      "key": "required",
-      "id": 3
-    },
-    {
       "name": "Item",
       "key": "required",
       "id": 4
@@ -204,6 +150,12 @@
       "condition": "number",
       "key": "optional",
       "id": 5
+    },
+    {
+      "name": "Salary",
+      "condition": "number",
+      "key": "required",
+      "id": 6
     }
   ]
 }

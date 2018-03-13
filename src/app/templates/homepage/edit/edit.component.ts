@@ -1,33 +1,23 @@
-import {Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {DATA} from '../../shared/mock.data';
-import {Message, SelectItem} from 'primeng/api';
-import {HttpClient} from '@angular/common/http';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap';
-import * as _ from 'lodash';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {MessageService} from 'primeng/components/common/messageservice';
-import {ApiService} from '../../api.service';
+import {Message} from 'primeng/api';
+import {HttpClient} from '@angular/common/http';
+import * as _ from 'lodash';
 
-
-interface City {
-    name: string;
-    code: string;
-}
 
 @Component({
-    selector: 'app-homepage',
-    templateUrl: './homepage.component.html',
-    styleUrls: ['./homepage.component.scss'],
-    providers: [MessageService]
+    selector: 'app-edit',
+    templateUrl: './edit.component.html',
+    styleUrls: ['./edit.component.scss']
 })
-export class HomepageComponent implements OnInit {
-
+export class EditComponent implements OnInit {
     @ViewChild('content') public content: ElementRef;
 
     cities1: any[] = [];
     selectedCity1 = [];
     dropTitle = [];
     Field: any[] = [];
+    UpdateField: any[] = [];
     selectedFieldList = [];
     list = [];
     msgs: Message[] = [];
@@ -39,7 +29,7 @@ export class HomepageComponent implements OnInit {
     documentType: any;
     documentDetail: any;
     companyInitial: any;
-    fieldValue: any;
+    fieldValue: any[] = [];
     companyNew: any;
     fieldName: any;
     fieldCondition: any;
@@ -47,6 +37,7 @@ export class HomepageComponent implements OnInit {
     req: any;
     fieldValueBack: any;
     FieldLength: any;
+    public data: any[];
 
     showSecond = false;
     showFirst = true;
@@ -56,11 +47,12 @@ export class HomepageComponent implements OnInit {
     addtable = false;
     hideCheckbox = false;
 
-    public data: any[];
 
-    constructor(private http: HttpClient,
-                private modalService: NgbModal,
-                 ) {
+    @Input() UpdateDetail: any;
+    @Output() posted = new EventEmitter();
+
+    constructor(private modalService: NgbModal,
+                private http: HttpClient) {
     }
 
     ngOnInit() {
@@ -83,7 +75,29 @@ export class HomepageComponent implements OnInit {
                 value: 'date'
             }
         ];
-        this.loadField();
+        this.documentType = _.get(this.UpdateDetail, 'Document_New', undefined);
+        this.documentDetail = _.get(this.UpdateDetail, 'Document_Detail', undefined);
+        this.selectedFieldList = _.get(this.UpdateDetail, 'field', undefined);
+        this.http.get('http://localhost:3000/field/')
+            .subscribe(
+                (res: any) => {
+                    this.UpdateField = this.checkDuplicateInvoice(res);
+                    console.log('Field', this.Field);
+                }
+            );
+        this.fieldValue = this.selectedFieldList;
+    }
+
+    checkDuplicateInvoice(invoices) {
+        if (_.isEmpty(this.selectedFieldList)) {
+            return invoices;
+        } else {
+            const filteredInvoices = _.differenceBy(invoices, this.selectedFieldList, 'id');
+            console.log('invoices', invoices);
+            console.log('this.selectedFieldList', this.selectedFieldList);
+            console.log('filteredInvoices', filteredInvoices);
+            return filteredInvoices;
+        }
     }
 
     deleteField(index) {
@@ -97,17 +111,17 @@ export class HomepageComponent implements OnInit {
 
     moveTo(event) {
         // this.hideCheckbox = true;
-        const selectedField = _.filter(this.Field, {id: event.id});
+        const selectedField = _.filter(this.UpdateField, {id: event.id});
         this.selectedFieldList.push(selectedField[0]);
 
-        this.Field = _.filter(this.Field, (obj: any) => {
+        this.UpdateField = _.filter(this.UpdateField, (obj: any) => {
             return obj.id !== event.id;
         });
     }
 
     moveBack(event) {
         const selectedFieldBack = _.filter(this.selectedFieldList, {id: event.id});
-        this.Field.push(selectedFieldBack[0]);
+        this.UpdateField.push(selectedFieldBack[0]);
 
         this.selectedFieldList = _.filter(this.selectedFieldList, (obj) => {
             return obj.id !== event.id;
@@ -140,27 +154,6 @@ export class HomepageComponent implements OnInit {
         this.modal = this.modalService.open(this.content, {size: 'lg', windowClass: 'set-while-space'});
         this.loadField();
     }
-
-    renderButtons(instance, td, row, col, prop, value, cellProperties) {
-        td.innerHTML = '<a href="google.com"><img src=\"../../../assets/images/edit.png\"></a>';
-        td.style.textAlign = 'center';
-    }
-
-    // postSort(index) {
-    //   console.log('select', this.selectedCity1[index]);
-    //   this.http.get('http://localhost:3000/templates')
-    //     .subscribe(
-    //       (response: any) => {
-    //         this.totalItems = response.length;
-    //       }
-    //     );
-    //   this.http.get('http://localhost:3000/templates?_sort=' + this.selectedCity1[index] + '&_order=desc' + '&_page=' + this.currentPage)
-    //     .subscribe(
-    //       (response: any) => {
-    //         this.data = response;
-    //       }
-    //     );
-    // }
 
     pageChanged(event: any) {
         // this.page = 1;
@@ -268,47 +261,23 @@ export class HomepageComponent implements OnInit {
 
     loadField() {
         this.http.get('http://localhost:3000/field')
-                        .subscribe(
-                            (data: any) => {
-                                this.Field = data;
-                                this.FieldLength = data.length
-                                console.log('this.a', this.FieldLength);
-                            }
-                        );
-    }
-
-    addTable(index) {
-        this.addtable = true;
-        this.http.get('http://localhost:3000/table/' + index)
             .subscribe(
-                (res: any) => {
-                    this.dropTitle.push({label: res.label, value: res.value});
-                    // this.dropAdd = Object.assign({}, object1);
-                    console.log('res', res);
+                (data: any) => {
+                    this.UpdateField = this.checkDuplicateInvoice(data);
+                    console.log('data', data);
+                    this.FieldLength = this.UpdateField.length;
+                    console.log('this.a', this.FieldLength);
                 }
             );
     }
 
-    removeTable(index) {
-        const array = this.dataTable.indexOf(index);
-        this.dataTable.splice(array, 1);
-        // this.http.delete('http://localhost:3000/table/' + index)
-        //   .subscribe(
-        //     (res: any) => {
-        //       console.log('res', res);
-        this.loadTable();
-        // }
-        // );
-    }
-
-    saveData() {
+    updateData() {
         const data = {
             Document_New: this.documentType,
             Document_Detail: this.documentDetail,
             field: this.selectedFieldList,
-            table: this.dropTitle
         };
-        this.http.post('http://localhost:3000/templates', data)
+        this.http.put('http://localhost:3000/templates/' + this.UpdateDetail.id, data)
             .subscribe(
                 (res: any) => {
                     this.modal.close();
@@ -316,32 +285,11 @@ export class HomepageComponent implements OnInit {
                     this.http.get('http://localhost:3000/templates')
                         .subscribe(
                             (response: any) => {
-                                this.totalItems = response.length;
-                                _.forEach(response.table, (item) => {
-                                    this.title.push(item.id);
-                                    console.log('daf', this.title);
-                                });
-                            }
-                        );
-                    this.http.get('http://localhost:3000/templates?_page=' + this.currentPage)
-                        .subscribe(
-                            (response: any) => {
-                                this.data = response;
+                                this.posted.emit();
                             }
                         );
                 }
             );
-    }
-
-    doc() {
-        this.documentList = true;
-        this.companyList = false;
-        console.log('asdfasf');
-    }
-
-    company() {
-        this.companyList = true;
-        this.documentList = false;
     }
 
     reset() {

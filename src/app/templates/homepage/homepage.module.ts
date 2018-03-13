@@ -4,11 +4,14 @@ import {HomepageComponent} from './homepage.component';
 import {NgModule} from '@angular/core';
 import {HotTableModule} from 'ng2-handsontable';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {CheckboxModule, DataScrollerModule, DragDropModule, DropdownModule, RadioButtonModule} from 'primeng/primeng';
+import {CheckboxModule, DataScrollerModule, DragDropModule, DropdownModule, MessagesModule, RadioButtonModule} from 'primeng/primeng';
 import {PaginationModule} from 'ngx-bootstrap/pagination';
 import {FormsModule} from '@angular/forms';
 import {ModalModule, TabsModule} from 'ngx-bootstrap';
 import {CardModule} from 'primeng/card';
+import {MessageModule} from 'primeng/message';
+import {GrowlModule} from 'primeng/growl';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
     imports: [
@@ -22,13 +25,17 @@ import {CardModule} from 'primeng/card';
         DataScrollerModule,
         CardModule,
         CheckboxModule,
+        MessagesModule,
+        MessageModule,
+        GrowlModule,
         ModalModule.forRoot(),
         PaginationModule.forRoot(),
         TabsModule.forRoot(),
         NgbModule
     ],
     declarations: [
-        HomepageComponent
+        HomepageComponent,
+        EditComponent
     ],
     providers: []
 })
