@@ -3,6 +3,8 @@ import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {Message} from 'primeng/api';
 import {HttpClient} from '@angular/common/http';
 import * as _ from 'lodash';
+import {AppService} from '../../../app.service';
+import {ApiService} from '../../../api.service';
 
 
 @Component({
@@ -52,7 +54,7 @@ export class EditComponent implements OnInit {
     @Output() posted = new EventEmitter();
 
     constructor(private modalService: NgbModal,
-                private http: HttpClient) {
+                private appService: ApiService) {
     }
 
     ngOnInit() {
@@ -64,25 +66,26 @@ export class EditComponent implements OnInit {
             },
             {
                 label: 'Text',
-                value: 'text'
+                value: '0'
             },
             {
                 label: 'Number',
-                value: 'number'
+                value: '1'
             },
             {
                 label: 'Date',
-                value: 'date'
+                value: '2'
             }
         ];
-        this.documentType = _.get(this.UpdateDetail, 'Document_New', undefined);
-        this.documentDetail = _.get(this.UpdateDetail, 'Document_Detail', undefined);
+        this.documentType = _.get(this.UpdateDetail, 'type_name', undefined);
+        this.documentDetail = _.get(this.UpdateDetail, 'detail', undefined);
         this.selectedFieldList = _.get(this.UpdateDetail, 'field', undefined);
-        this.http.get('http://localhost:3000/field/')
+        console.log('this.selectedFIle', this.selectedFieldList);
+        this.appService.getField()
             .subscribe(
                 (res: any) => {
                     this.UpdateField = this.checkDuplicateInvoice(res);
-                    console.log('Field', this.Field);
+                    console.log('Field', this.UpdateField);
                 }
             );
         this.fieldValue = this.selectedFieldList;
@@ -92,7 +95,7 @@ export class EditComponent implements OnInit {
         if (_.isEmpty(this.selectedFieldList)) {
             return invoices;
         } else {
-            const filteredInvoices = _.differenceBy(invoices, this.selectedFieldList, 'id');
+            const filteredInvoices = _.differenceBy(invoices, this.selectedFieldList, 'field_name');
             console.log('invoices', invoices);
             console.log('this.selectedFieldList', this.selectedFieldList);
             console.log('filteredInvoices', filteredInvoices);
@@ -101,7 +104,7 @@ export class EditComponent implements OnInit {
     }
 
     deleteField(index) {
-        this.http.delete('http://localhost:3000/field/' + index.id)
+        this.appService.deleteFields(index.id)
             .subscribe(
                 (res: any) => {
                     this.loadField();
@@ -129,13 +132,13 @@ export class EditComponent implements OnInit {
     }
 
     loadInput() {
-        this.http.get('http://localhost:3000/templates')
+        this.appService.getTable()
             .subscribe(
                 (response: any) => {
                     this.totalItems = response.length;
                 }
             );
-        this.http.get('http://localhost:3000/templates?_page=' + this.currentPage)
+        this.appService.getTable()
             .subscribe(
                 (response: any) => {
                     this.data = response;
@@ -159,18 +162,18 @@ export class EditComponent implements OnInit {
         // this.page = 1;
         this.currentPage = event.page;
         console.log('t', this.currentPage);
-        this.http.get('http://localhost:3000/templates?_page=' + this.currentPage)
+        this.appService.getTable()
             .subscribe(
                 (response: any) => {
                     this.data = response;
                 }
             );
-        this.http.get('http://localhost:3000/templates?_sort=' + this.selectedCity1 + '&_order=asc' + '&_page=' + this.currentPage)
-            .subscribe(
-                (response: any) => {
-                    this.data = response;
-                }
-            );
+        // this.appService.get('http://localhost:3000/templates?_sort=' + this.selectedCity1 + '&_order=asc' + '&_page=' + this.currentPage)
+        //     .subscribe(
+        //         (response: any) => {
+        //             this.data = response;
+        //         }
+        //     );
     }
 
     search() {
@@ -180,19 +183,19 @@ export class EditComponent implements OnInit {
         //       this.totalItems = response.length;
         //     }
         //   );
-        this.http.get('http://localhost:3000/templates?_page=' + this.currentPage + '&q=' + this.input)
-            .subscribe(
-                (response: any) => {
-                    this.data = response;
-                    this.http.get('http://localhost:3000/templates?q=' + this.input)
-                        .subscribe(
-                            (a: any) => {
-                                this.totalItems = a.length;
-                            }
-                        );
-                    console.log('search', response);
-                }
-            );
+        // this.appService.get('http://localhost:3000/templates?_page=' + this.currentPage + '&q=' + this.input)
+        //     .subscribe(
+        //         (response: any) => {
+        //             this.data = response;
+        //             this.appService.get('http://localhost:3000/templates?q=' + this.input)
+        //                 .subscribe(
+        //                     (a: any) => {
+        //                         this.totalItems = a.length;
+        //                     }
+        //                 );
+        //             console.log('search', response);
+        //         }
+        //     );
     }
 
     // openModal(lgModal: TemplateRef<any>) {
@@ -203,7 +206,6 @@ export class EditComponent implements OnInit {
         this.showSecond = true;
         this.showFirst = false;
         this.showThird = false;
-        this.loadTable();
     }
 
     showFirstModel() {
@@ -221,16 +223,16 @@ export class EditComponent implements OnInit {
     postTable() {
         const projectTitle = {
             // title: this.title,
-            name: this.fieldName,
+            field_name: this.fieldName,
             condition: this.fieldCondition,
             key: this.req
         };
 
-        this.http.get('http://localhost:3000/field')
+        this.appService.getField()
             .subscribe(
                 (res: any) => {
-                    if (_.isEmpty(_.filter(res, {name: this.fieldName}))) {
-                        this.http.post('http://localhost:3000/field', projectTitle)
+                    if (_.isEmpty(_.filter(res, {field_name: this.fieldName}))) {
+                        this.appService.postField( projectTitle)
                             .subscribe(
                                 (data: any) => {
                                     this.loadField();
@@ -244,23 +246,8 @@ export class EditComponent implements OnInit {
             );
     }
 
-    loadTable() {
-        this.http.get('http://localhost:3000/table')
-            .subscribe(
-                (res: any) => {
-                    this.dataTable = res;
-                    console.log('kim', res[0].data);
-                    _.forEach(res[0].data, (item) => {
-                        console.log('load', item);
-                        this.dropTitle.push({label: item.label, value: item.value});
-                        console.log('loadttile', this.dropTitle);
-                    });
-                }
-            );
-    }
-
     loadField() {
-        this.http.get('http://localhost:3000/field')
+        this.appService.getField()
             .subscribe(
                 (data: any) => {
                     this.UpdateField = this.checkDuplicateInvoice(data);
@@ -273,16 +260,16 @@ export class EditComponent implements OnInit {
 
     updateData() {
         const data = {
-            Document_New: this.documentType,
-            Document_Detail: this.documentDetail,
+            type_name: this.documentType,
+            detail: this.documentDetail,
             field: this.selectedFieldList,
         };
-        this.http.put('http://localhost:3000/templates/' + this.UpdateDetail.id, data)
+        this.appService.putField( this.UpdateDetail.id, data)
             .subscribe(
                 (res: any) => {
                     this.modal.close();
                     this.reset();
-                    this.http.get('http://localhost:3000/templates')
+                    this.appService.getTable()
                         .subscribe(
                             (response: any) => {
                                 this.posted.emit();
