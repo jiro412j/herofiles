@@ -1,0 +1,31 @@
+# Core
+Django
+django-environ
+django-reversion
+django-filter
+django-model-controller
+
+
+# Django REST framework, JSON Web Token Authentication and Swagger
+djangorestframework
+djangorestframework-jwt
+
+# Debugging only on Local environment
+django-debug-toolbar
+django-extensions
+
+# postgres adapter
+psycopg2
+
+# Production running
+gunicorn
+gevent
+
+# Header for API
+django-cors-headers
+
+# bulk create
+django-bulk-update
+
+# Django safedelete
+django-safedelete

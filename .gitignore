@@ -41,3 +41,18 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+### Python template
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pycharm
+.idea
+
+#Django static
+static
+
+# Django Media
+media
