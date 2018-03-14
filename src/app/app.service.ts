@@ -19,7 +19,7 @@ export class AppService {
   }
 
   get(url, params?) {
-    return this.http.get(url, {headers: this.headers});
+    return this.http.get(url, {params: params, headers: this.headers});
   }
 
   put(url, data) {

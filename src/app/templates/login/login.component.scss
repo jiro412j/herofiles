@@ -1,7 +1,7 @@
 .background {
   width: 100vw;
   height: 100vh;
-  background-color: #ADADAD;
+  background-color: #22353e;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,6 +12,7 @@
   width: 1060px;
   height: 600px;
   background-color: #fefefe;
+  box-shadow: 1px 2px 11px 0px #9E9E9E;
 }
 
 .side1 {
@@ -20,6 +21,8 @@
 }
 
 .side2 {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .style1 {
@@ -41,6 +44,12 @@
   border-bottom: 2px solid #153343;
 }
 
+.form2 {
+  border: none;
+  border-bottom: 2px solid #153343;
+  margin-top: 31px;
+}
+
 .user {
   display: flex;
   justify-content: center;
@@ -56,7 +65,7 @@
 
 .btn1 {
   margin-top: 30px;
-
+  box-shadow: 1px 2px 11px 0px #9E9E9E;
 }
 
 .image {

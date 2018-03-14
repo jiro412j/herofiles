@@ -7,16 +7,17 @@
             <div class="col-md-3 side2 .p-l-0 .p-r-0">
                 <div class="login-form">
                     <div class="head">
-                        <h1>HERO FILES</h1>
+                        <h1 style="font-weight: 100">HERO FILES</h1>
                     </div>
                     <div class="bd">
                         <div class="user">
-                            <span>Username:</span>
-                            <input type="text" class=" form1" [(ngModel)]="username" name="username">
+                            <input type="text" class=" form1" [(ngModel)]="username" name="username"
+                                   placeholder="Username">
                         </div>
                         <div class="pass">
-                            <span>Password:</span>
-                            <input type="password" class=" form1" [(ngModel)]="password" name="password">
+                            <!--<span>Password:</span>-->
+                            <input type="password" class=" form2" [(ngModel)]="password" name="password"
+                                   placeholder="Password">
                         </div>
                         <button type="submit" class="btn btn-primary btn1" name="submitButton" (click)="login()">Log In</button>
                     </div>

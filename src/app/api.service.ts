@@ -8,8 +8,8 @@ export class ApiService {
     constructor(private http: AppService) {
     }
 
-    getTable() {
-        return this.http.get(API_URL.table);
+    getTable(params?) {
+        return this.http.get(API_URL.table, params);
     }
 
     deleteFields(id) {
