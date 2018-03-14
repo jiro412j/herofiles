@@ -1,3 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'assets/scss/helpers';
 @import '~primeng/resources/primeng.min.css';
 @import '~primeng/resources/themes/omega/theme.css';
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+html, body {
+  //font-family: 'Kanit' !important;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  background: #fdfdfd;
+
+  &::-webkit-scrollbar-track {
+    background-color: white;
+  }
+
+  &::-webkit-scrollbar {
+    color: #f0f0f0;
+    width: 6px;
+    background-color: #f0f0f0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #f0f0f0;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #cccccc;
+    //opacity: 0.9;
+  }
+}
+
+.btn {
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.filter-box {
+  padding: 15px;
+  margin-top: 20px;
+  border: 1px solid #cccccc;
+  background: #fdfdfd;
+}
+
+.border-frame {
+  padding: 15px;
+  border: 1px solid #cccccc;
+}
