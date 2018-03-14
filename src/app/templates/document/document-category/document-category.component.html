@@ -1,12 +1,21 @@
 <h1 class="title-header">
-  Import Documents
+  Documents
 </h1>
 <hr>
+
 <div class="text-right">
-  <button class="btn btn-primary">Import Document</button>
+  <a [routerLink]="['/document', 'import']">
+    <button class="btn btn-primary">Import Document</button>
+  </a>
 </div>
 <app-document-filter></app-document-filter>
 
 <div class="border-frame m-t-20">
-  Hello
+  <div class="row">
+    <div class="col-sm-3" *ngFor="let category of categories">
+      <div class="category-box pointer box-shadow">
+        <h3>{{ category.type_name }}</h3>
+      </div>
+    </div>
+  </div>
 </div>

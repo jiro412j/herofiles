@@ -12,11 +12,14 @@ import { HomepageModule } from './homepage/homepage.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserSettingModule } from './user-setting/user-setting.module';
 import { DocumentModule } from './document/document.module';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     RouterModule,
     TemplatesRoutingModule,
@@ -28,6 +31,7 @@ import { DocumentModule } from './document/document.module';
     TemplatesComponent,
     NavBarComponent,
     SidebarComponent,
+    LoginComponent
   ]
 })
 export class TemplatesModule {

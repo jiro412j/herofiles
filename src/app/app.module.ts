@@ -1,15 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
-import {TemplatesModule} from './templates/templates.module';
-import {RouterModule} from '@angular/router';
-import { routing} from './app.routes';
-import {NgModule} from '@angular/core';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {HttpClientModule} from '@angular/common/http';
-
+import { TemplatesModule } from './templates/templates.module';
+import { RouterModule } from '@angular/router';
+import { routing } from './app.routes';
+import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from './api.service';
+import { HttpClientService } from './shared/http-client.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,11 @@ import {HttpClientModule} from '@angular/common/http';
     RouterModule,
     NgbModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    HttpClientService,
+    ApiService
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

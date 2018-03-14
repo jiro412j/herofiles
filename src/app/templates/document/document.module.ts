@@ -1,24 +1,36 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {RouterModule} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DropdownModule } from 'primeng/primeng';
 
-import {DocumentRoutingModule} from './document-routing.module';
-import {DocumentCategoryComponent} from './document-category/document-category.component';
+import { DocumentRoutingModule } from './document-routing.module';
+import { DocumentCategoryComponent } from './document-category/document-category.component';
 import { DocumentFilterComponent } from './document-filter/document-filter.component';
 import { DocumentListComponent } from './document-list/document-list.component';
-import { DocumentUploadComponent } from './document-upload/document-upload.component';
+import { DocumentImportComponent } from './document-import/document-import.component';
+import { DocumentService } from './document.service';
+import { HttpClientService } from '../../shared/http-client.service';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    DocumentRoutingModule
+    FormsModule,
+    DocumentRoutingModule,
+    NgbModule,
+    DropdownModule
   ],
   declarations: [
     DocumentCategoryComponent,
     DocumentFilterComponent,
     DocumentListComponent,
-    DocumentUploadComponent
+    DocumentImportComponent
+  ],
+  providers: [
+    DocumentService,
+    HttpClientService
   ]
 })
 export class DocumentModule {

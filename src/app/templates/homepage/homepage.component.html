@@ -123,20 +123,22 @@
                                   <div class="col-md-7" style="margin-left: 18px;">
                                       <div class="row">
                                           <div class="col-md-4">Name:</div>
-                                          <div class="col-md-8">{{field.name}}</div>
+                                          <div class="col-md-8">{{field.field_name}}</div>
 
                                           <div class="col-md-5">Condition:</div>
                                           <div class="col-md-7">
-                                              <span class="badge badge-pill badge-secondary">{{field.condition}}</span>
+                                              <span *ngIf="field.condition === 0" class="badge badge-pill badge-secondary">Text</span>
+                                              <span *ngIf="field.condition === 1" class="badge badge-pill badge-secondary">Number</span>
+                                              <span *ngIf="field.condition === 2" class="badge badge-pill badge-secondary">Date</span>
                                           </div>
 
                                           <div class="col-md-4">Key:</div>
                                           <div class="col-md-8">
-                                          <span *ngIf="field.key === 'required'"
-                                                class="badge badge-pill badge-success">{{field.key}}
+                                          <span *ngIf="field.key === 0"
+                                                class="badge badge-pill badge-success">Optional
                                           </span>
-                                          <span *ngIf="field.key === 'optional'"
-                                                class="badge badge-pill badge-danger">{{field.key}}
+                                          <span *ngIf="field.key === 1"
+                                                class="badge badge-pill badge-danger">Required
                                           </span>
                                           </div>
 
@@ -162,20 +164,22 @@
                                   <div class="col-md-7">
                                       <div class="row">
                                           <div class="col-md-4">Name:</div>
-                                          <div class="col-md-8">{{field.name}}</div>
+                                          <div class="col-md-8">{{field.field_name}}</div>
 
                                           <div class="col-md-5">Condition:</div>
                                           <div class="col-md-7">
-                                              <span class="badge badge-pill badge-secondary">{{field.condition}}</span>
+                                              <span *ngIf="field.condition === 0" class="badge badge-pill badge-secondary">Text</span>
+                                              <span *ngIf="field.condition === 1" class="badge badge-pill badge-secondary">Number</span>
+                                              <span *ngIf="field.condition === 2" class="badge badge-pill badge-secondary">Date</span>
                                           </div>
 
                                           <div class="col-md-4">Key:</div>
                                           <div class="col-md-8">
-                                          <span *ngIf="field.key === 'required'"
-                                                class="badge badge-pill badge-success">{{field.key}}
+                                          <span *ngIf="field.key === 0"
+                                                class="badge badge-pill badge-success">Optional
                                           </span>
-                                          <span *ngIf="field.key === 'optional'"
-                                                class="badge badge-pill badge-danger">{{field.key}}
+                                              <span *ngIf="field.key === 1"
+                                                    class="badge badge-pill badge-danger">Required
                                           </span>
                                           </div>
                                       </div>
@@ -211,11 +215,11 @@
                       </div>
                       <div class="row" style="margin-top: 10px">
                           <div class="col-md-6" style="text-align: end;">
-                              <p-radioButton name="groupname" value="required" label="Required"
+                              <p-radioButton name="groupname" value= 1 label="Required"
                                              [(ngModel)]="req"></p-radioButton>
                           </div>
                           <div class="col-md-6" style="text-align: start;">
-                              <p-radioButton name="groupname" value="optional" label="Optional"
+                              <p-radioButton name="groupname" value= 0 label="Optional"
                                              [(ngModel)]="req"></p-radioButton>
                           </div>
                       </div>
@@ -310,19 +314,19 @@
             <tbody>
             <tr *ngFor="let data of data">
                 <td class="table-col1">{{data.id}}</td>
-                <td class="table-col2">{{data.Document_New}}</td>
-                <td class="table-col3">{{data.Document_Detail}}</td>
+                <td class="table-col2">{{data.type_name}}</td>
+                <td class="table-col3">{{data.detail}}</td>
                 <td class="table-col2">
                     <div *ngFor="let field of data.field">
-                        <span class="badge badge-pill badge-info">{{field.name}}</span>
+                        <span class="badge badge-pill badge-info">{{field.field_name}}</span>
                     </div>
                 </td>
                 <td class="table-col3">
                     <div *ngFor="let field of data.field">
-                        <span class="badge badge-pill badge-secondary">{{field.condition}}</span>
-                        <!--<span *ngIf="field.condition === 'number'" class="badge badge-pill badge-secondary">{{field.condition}}</span>-->
-                        <!--<span *ngIf="field.condition === 'date'" class="badge badge-pill badge-success">{{field.condition}}</span>-->
-                        <!--<span *ngIf="field.condition === 'text'" class="badge badge-pill badge-warning">{{field.condition}}</span>-->
+                        <span *ngIf="field.condition === 0" class="badge badge-pill badge-secondary">Text</span>
+                        <span *ngIf="field.condition === 1" class="badge badge-pill badge-secondary">Number</span>
+                        <span *ngIf="field.condition === 2"
+                              class="badge badge-pill badge-secondary">Date</span>
                     </div>
                 </td>
                 <td class="table-col4"></td>

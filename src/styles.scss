@@ -34,8 +34,9 @@ html, body {
 }
 
 .btn {
+  padding: 5px 15px;
   &:focus {
-    box-shadow: none;
+    box-shadow: none !important;
   }
 }
 
@@ -49,4 +50,40 @@ html, body {
 .border-frame {
   padding: 15px;
   border: 1px solid #cccccc;
+  background: #fdfdfd;
+}
+
+.input-group-addon {
+  background: transparent;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+  &:focus {
+    outline: none !important;
+  }
+}
+
+ngb-datepicker {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.ui-dropdown .ui-dropdown-trigger {
+  padding: 0.3em 0.1em;
+}
+
+.title-header {
+  font-weight: bold;
+  padding-top: 30px;
+}
+
+.scrollable {
+  overflow-x: auto;
+  .table {
+    white-space: nowrap;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 0 1px 0 rgba(61, 119, 180, 0.12), 0 0.25rem 12px 0 rgba(91, 139, 199, 0.24);
 }

@@ -1,0 +1,14 @@
+.category-box {
+  //border: 1px solid #cccccc;
+  height: 200px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: 300ms all;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  &:hover {
+    transform: scale(1.05);
+  }
+}

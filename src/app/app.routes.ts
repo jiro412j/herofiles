@@ -5,12 +5,6 @@ import {routes} from './templates/templates-routing.module';
 
 
 const appRoutes: Routes = [
-    //   path: '',
-    //   component: TemplatesComponent,
-    //   children: [
-    //     ...routes
-    //   ]
-    // },
     ...routes
 ];
 

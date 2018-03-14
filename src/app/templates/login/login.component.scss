@@ -1,0 +1,79 @@
+.background {
+  width: 100vw;
+  height: 100vh;
+  background-color: #ADADAD;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-block {
+  //box-shadow: 0 0 5px 5px #fefefe;
+  width: 1060px;
+  height: 600px;
+  background-color: #fefefe;
+}
+
+.side1 {
+  height: 100%;
+  width: 100%;
+}
+
+.side2 {
+}
+
+.style1 {
+  width: 100%;
+  height: 100%;
+}
+
+.login-form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form1 {
+  border: none;
+  border-bottom: 2px solid #153343;
+}
+
+.user {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.pass {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.btn1 {
+  margin-top: 30px;
+
+}
+
+.image {
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.bd {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.head {
+  height: 50%;
+  font-family: 'Prompt', sans-serif;
+  display: flex;
+  align-items: center;
+}

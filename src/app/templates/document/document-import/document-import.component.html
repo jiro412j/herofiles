@@ -1,0 +1,60 @@
+<h1 class="title-header">
+  Import Documents
+</h1>
+<hr>
+
+<div class="border-frame m-t-20">
+  <div class="form-group row">
+    <label class="col-sm-5 col-form-label">Select Document Type</label>
+    <div class="col-sm-7">
+      <p-dropdown [options]="documentType"
+                  [style]="{'width':'100%'}"
+                  [placeholder]="'Select Type'"
+                  [(ngModel)]="selectedType"></p-dropdown>
+    </div>
+  </div>
+
+  <div class="form-group row m-t-15">
+    <label class="col-sm-5 col-form-label">Date of Document</label>
+    <div class="col-sm-7">
+      <div class="input-group">
+        <input class="form-control"
+               name="invoicingDate" [(ngModel)]="documentDate" ngbDatepicker #sd="ngbDatepicker">
+        <button class="input-group-addon" (click)="sd.toggle()" type="button">
+          <i class="far fa-calendar-alt"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row m-t-15">
+    <label class="col-sm-5 col-form-label">Summary Description</label>
+    <div class="col-sm-7">
+      <textarea class="form-control" [(ngModel)]="description" rows="3"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group row m-t-15">
+    <label class="col-sm-5 col-form-label">Import Document</label>
+    <div class="col-sm-7">
+      <input type="file" class="form-control" [(ngModel)]="file" (change)="selectFile($event)">
+    </div>
+  </div>
+
+  <div class="form-group row m-t-15">
+    <label class="col-sm-5 col-form-label">Piority of document</label>
+    <div class="col-sm-7">
+      <p-dropdown [options]="priorityType"
+                  [style]="{'width':'100%'}"
+                  [(ngModel)]="selectedPriority"></p-dropdown>
+    </div>
+  </div>
+
+  <div class="text-center m-t-30">
+    <a class="btn" [routerLink]="['/document', 'category']">
+      Back
+    </a>
+    <button class="btn btn-primary" (click)="upload()">Import</button>
+  </div>
+
+</div>

@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { DocumentCategoryComponent } from './document-category/document-category.component';
-import { DocumentUploadComponent } from './document-upload/document-upload.component';
+import { DocumentImportComponent } from './document-import/document-import.component';
+import { DocumentListComponent } from './document-list/document-list.component';
 
 export const documentRoutes: Routes = [
   {
@@ -14,7 +15,11 @@ export const documentRoutes: Routes = [
       },
       {
         path: 'import',
-        component: DocumentUploadComponent
+        component: DocumentImportComponent
+      },
+      {
+        path: 'list/:id',
+        component: DocumentListComponent
       }
     ]
   }

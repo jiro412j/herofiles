@@ -10,17 +10,29 @@
     </div>
     <div class="col-md-4">
       <div class="form-group row">
-        <label for="endDate" class="col-sm-5 col-form-label">Start Date</label>
+        <label class="col-sm-5 col-form-label">Start Date</label>
         <div class="col-sm-7">
-          <input type="text" class="form-control" id="endDate">
+          <div class="input-group">
+            <input class="form-control"
+                   name="invoicingDate" [(ngModel)]="startDate" ngbDatepicker #sd="ngbDatepicker">
+            <button class="input-group-addon" (click)="sd.toggle()" type="button">
+              <i class="far fa-calendar-alt"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="form-group row">
-        <label for="documentType" class="col-sm-5 col-form-label">End Date</label>
+        <label class="col-sm-5 col-form-label">End Date</label>
         <div class="col-sm-7">
-          <input type="text" class="form-control" id="documentType">
+          <div class="input-group">
+            <input class="form-control"
+                   name="invoicingDate" [(ngModel)]="endDate" ngbDatepicker #ed="ngbDatepicker">
+            <button class="input-group-addon" (click)="ed.toggle()" type="button">
+              <i class="far fa-calendar-alt"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
