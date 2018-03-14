@@ -7,6 +7,7 @@ import * as _ from 'lodash';
 import {NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {MessageService} from 'primeng/components/common/messageservice';
 import {ApiService} from '../../api.service';
+import {AppService} from '../../app.service';
 
 
 interface City {
@@ -58,7 +59,7 @@ export class HomepageComponent implements OnInit {
 
     public data: any[];
 
-    constructor(private http: HttpClient,
+    constructor(private appService: ApiService,
                 private modalService: NgbModal,
                  ) {
     }
@@ -72,22 +73,22 @@ export class HomepageComponent implements OnInit {
             },
             {
                 label: 'Text',
-                value: 'text'
+                value: '0'
             },
             {
                 label: 'Number',
-                value: 'number'
+                value: '1'
             },
             {
                 label: 'Date',
-                value: 'date'
+                value: '2'
             }
         ];
         this.loadField();
     }
 
     deleteField(index) {
-        this.http.delete('http://localhost:3000/field/' + index.id)
+        this.appService.deleteFields(index.id)
             .subscribe(
                 (res: any) => {
                     this.loadField();
@@ -115,13 +116,13 @@ export class HomepageComponent implements OnInit {
     }
 
     loadInput() {
-        this.http.get('http://localhost:3000/templates')
+        this.appService.getTable()
             .subscribe(
                 (response: any) => {
                     this.totalItems = response.length;
                 }
             );
-        this.http.get('http://localhost:3000/templates?_page=' + this.currentPage)
+        this.appService.getTable()
             .subscribe(
                 (response: any) => {
                     this.data = response;
@@ -166,18 +167,18 @@ export class HomepageComponent implements OnInit {
         // this.page = 1;
         this.currentPage = event.page;
         console.log('t', this.currentPage);
-        this.http.get('http://localhost:3000/templates?_page=' + this.currentPage)
+        this.appService.getTable()
             .subscribe(
                 (response: any) => {
                     this.data = response;
                 }
             );
-        this.http.get('http://localhost:3000/templates?_sort=' + this.selectedCity1 + '&_order=asc' + '&_page=' + this.currentPage)
-            .subscribe(
-                (response: any) => {
-                    this.data = response;
-                }
-            );
+        // this.http.get('http://localhost:3000/templates?_sort=' + this.selectedCity1 + '&_order=asc' + '&_page=' + this.currentPage)
+        //     .subscribe(
+        //         (response: any) => {
+        //             this.data = response;
+        //         }
+        //     );
     }
 
     search() {
@@ -187,19 +188,19 @@ export class HomepageComponent implements OnInit {
         //       this.totalItems = response.length;
         //     }
         //   );
-        this.http.get('http://localhost:3000/templates?_page=' + this.currentPage + '&q=' + this.input)
-            .subscribe(
-                (response: any) => {
-                    this.data = response;
-                    this.http.get('http://localhost:3000/templates?q=' + this.input)
-                        .subscribe(
-                            (a: any) => {
-                                this.totalItems = a.length;
-                            }
-                        );
-                    console.log('search', response);
-                }
-            );
+        // this.appService.get('http://192.168.100.235:8000/api/document_setting/' + this.currentPage + '&q=' + this.input)
+        //     .subscribe(
+        //         (response: any) => {
+        //             this.data = response;
+        //             this.http.get('http://localhost:3000/templates?q=' + this.input)
+        //                 .subscribe(
+        //                     (a: any) => {
+        //                         this.totalItems = a.length;
+        //                     }
+        //                 );
+        //             console.log('search', response);
+        //         }
+        //     );
     }
 
     // openModal(lgModal: TemplateRef<any>) {
@@ -210,7 +211,7 @@ export class HomepageComponent implements OnInit {
         this.showSecond = true;
         this.showFirst = false;
         this.showThird = false;
-        this.loadTable();
+        // this.loadTable();
     }
 
     showFirstModel() {
@@ -228,16 +229,16 @@ export class HomepageComponent implements OnInit {
     postTable() {
         const projectTitle = {
             // title: this.title,
-            name: this.fieldName,
+            field_name: this.fieldName,
             condition: this.fieldCondition,
             key: this.req
         };
 
-        this.http.get('http://localhost:3000/field')
+        this.appService.getField()
             .subscribe(
                 (res: any) => {
-                    if (_.isEmpty(_.filter(res, {name: this.fieldName}))) {
-                        this.http.post('http://localhost:3000/field', projectTitle)
+                    if (_.isEmpty(_.filter(res, {field_name: this.fieldName}))) {
+                        this.appService.postField( projectTitle)
                             .subscribe(
                                 (data: any) => {
                                     this.loadField();
@@ -251,69 +252,68 @@ export class HomepageComponent implements OnInit {
             );
     }
 
-    loadTable() {
-        this.http.get('http://localhost:3000/table')
-            .subscribe(
-                (res: any) => {
-                    this.dataTable = res;
-                    console.log('kim', res[0].data);
-                    _.forEach(res[0].data, (item) => {
-                        console.log('load', item);
-                        this.dropTitle.push({label: item.label, value: item.value});
-                        console.log('loadttile', this.dropTitle);
-                    });
-                }
-            );
-    }
+    // loadTable() {
+    //     this.appService.get('http://localhost:3000/table')
+    //         .subscribe(
+    //             (res: any) => {
+    //                 this.dataTable = res;
+    //                 console.log('kim', res[0].data);
+    //                 _.forEach(res[0].data, (item) => {
+    //                     console.log('load', item);
+    //                     this.dropTitle.push({label: item.label, value: item.value});
+    //                     console.log('loadttile', this.dropTitle);
+    //                 });
+    //             }
+    //         );
+    // }
 
     loadField() {
-        this.http.get('http://localhost:3000/field')
+        this.appService.getField()
                         .subscribe(
                             (data: any) => {
                                 this.Field = data;
-                                this.FieldLength = data.length
+                                this.FieldLength = data.length;
                                 console.log('this.a', this.FieldLength);
                             }
                         );
     }
 
     addTable(index) {
-        this.addtable = true;
-        this.http.get('http://localhost:3000/table/' + index)
-            .subscribe(
-                (res: any) => {
-                    this.dropTitle.push({label: res.label, value: res.value});
-                    // this.dropAdd = Object.assign({}, object1);
-                    console.log('res', res);
-                }
-            );
+        // this.addtable = true;
+        // this.appService.get('http://localhost:3000/table/' + index)
+        //     .subscribe(
+        //         (res: any) => {
+        //             this.dropTitle.push({label: res.label, value: res.value});
+        //             // this.dropAdd = Object.assign({}, object1);
+        //             console.log('res', res);
+        //         }
+        //     );
     }
 
     removeTable(index) {
-        const array = this.dataTable.indexOf(index);
-        this.dataTable.splice(array, 1);
-        // this.http.delete('http://localhost:3000/table/' + index)
-        //   .subscribe(
-        //     (res: any) => {
-        //       console.log('res', res);
-        this.loadTable();
+        // const array = this.dataTable.indexOf(index);
+        // this.dataTable.splice(array, 1);
+        // // this.http.delete('http://localhost:3000/table/' + index)
+        // //   .subscribe(
+        // //     (res: any) => {
+        // //       console.log('res', res);
+        // this.loadTable();
         // }
         // );
     }
 
     saveData() {
         const data = {
-            Document_New: this.documentType,
-            Document_Detail: this.documentDetail,
+            type_name: this.documentType,
+            detail: this.documentDetail,
             field: this.selectedFieldList,
-            table: this.dropTitle
         };
-        this.http.post('http://localhost:3000/templates', data)
+        this.appService.postTable(data)
             .subscribe(
                 (res: any) => {
                     this.modal.close();
                     this.reset();
-                    this.http.get('http://localhost:3000/templates')
+                    this.appService.getTable()
                         .subscribe(
                             (response: any) => {
                                 this.totalItems = response.length;
@@ -323,7 +323,7 @@ export class HomepageComponent implements OnInit {
                                 });
                             }
                         );
-                    this.http.get('http://localhost:3000/templates?_page=' + this.currentPage)
+                    this.appService.getTable()
                         .subscribe(
                             (response: any) => {
                                 this.data = response;

@@ -9,6 +9,8 @@ import { routing} from './app.routes';
 import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
+import {ApiService} from './api.service';
+import {AppService} from './app.service';
 
 
 @NgModule({
@@ -23,7 +25,7 @@ import {HttpClientModule} from '@angular/common/http';
     RouterModule,
     NgbModule.forRoot(),
   ],
-  providers: [],
+  providers: [AppService, ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

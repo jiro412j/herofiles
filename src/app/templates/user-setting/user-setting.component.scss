@@ -2,3 +2,42 @@
   font-family: 'Rubik', sans-serif;
   font-weight: 500;
 }
+
+/deep/ {
+  .nav-tabs .nav-link.active {
+    background: #5697ED;
+    color: #fefefe;
+  }
+
+  .nav-tabs .nav-link {
+    color: #6C8784;
+  }
+}
+
+.table-search {
+  //border-radius: 24px;
+  width: 451px;
+}
+
+.search-icon {
+  //border-radius: 49px;
+  background-color: #153343;
+  border-color: #153343;
+}
+
+.btn-document {
+  background-color: #1ABC9C;
+  border-color: #1ABC9C;
+  box-shadow: 1px 2px 11px 0px #9E9E9E;
+
+}
+
+.button-right {
+  text-align: right;
+  padding: 13px;
+}
+
+.table-head {
+  text-align: center;
+  vertical-align: middle;
+}
