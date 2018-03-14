@@ -77,15 +77,13 @@ export class EditComponent implements OnInit {
                 value: '2'
             }
         ];
-        this.documentType = _.get(this.UpdateDetail, 'type_name', undefined);
-        this.documentDetail = _.get(this.UpdateDetail, 'detail', undefined);
-        this.selectedFieldList = _.get(this.UpdateDetail, 'field', undefined);
-        console.log('this.selectedFIle', this.selectedFieldList);
+        this.documentType = _.get(this.UpdateDetail, 'type_name');
+        this.documentDetail = _.get(this.UpdateDetail, 'detail');
+        this.selectedFieldList = _.get(this.UpdateDetail, 'field');
         this.appService.getField()
             .subscribe(
                 (res: any) => {
                     this.UpdateField = this.checkDuplicateInvoice(res);
-                    console.log('Field', this.UpdateField);
                 }
             );
         this.fieldValue = this.selectedFieldList;
@@ -96,9 +94,6 @@ export class EditComponent implements OnInit {
             return invoices;
         } else {
             const filteredInvoices = _.differenceBy(invoices, this.selectedFieldList, 'field_name');
-            console.log('invoices', invoices);
-            console.log('this.selectedFieldList', this.selectedFieldList);
-            console.log('filteredInvoices', filteredInvoices);
             return filteredInvoices;
         }
     }
@@ -161,7 +156,6 @@ export class EditComponent implements OnInit {
     pageChanged(event: any) {
         // this.page = 1;
         this.currentPage = event.page;
-        console.log('t', this.currentPage);
         this.appService.getTable()
             .subscribe(
                 (response: any) => {
@@ -251,9 +245,7 @@ export class EditComponent implements OnInit {
             .subscribe(
                 (data: any) => {
                     this.UpdateField = this.checkDuplicateInvoice(data);
-                    console.log('data', data);
                     this.FieldLength = this.UpdateField.length;
-                    console.log('this.a', this.FieldLength);
                 }
             );
     }

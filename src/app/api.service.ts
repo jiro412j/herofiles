@@ -41,7 +41,7 @@ export class ApiService {
         localStorage.removeItem('user');
     }
 
-    refreshToken(currentToken) {
-        return this.http.post(API_URL.refresh_token, {token: currentToken});
-    }
+    // refreshToken(currentToken) {
+    //     return this.http.post(API_URL.refresh_token, {token: currentToken});
+    // }
 }

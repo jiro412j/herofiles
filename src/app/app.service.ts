@@ -8,7 +8,6 @@ export class AppService {
   headers;
 
   constructor(private http: HttpClient) {
-    // this.headers = new HttpHeaders().set('Authorization', 'Bearer' + ' ' + localStorage.getItem('user'));
       this.headerFunction();
   }
   headerFunction() {
