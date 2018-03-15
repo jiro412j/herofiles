@@ -5,6 +5,7 @@ import {TemplatesComponent} from './templates.component';
 import {homepageRoutes} from './homepage/homepage.routes';
 import {userroutes} from './user-setting/user-setting-routing.module';
 import {LoginComponent} from './login/login.component';
+import { AuthGuard } from '../auth-guard.service';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -19,6 +20,7 @@ export const routes: Routes = [
             ...homepageRoutes,
             ...userroutes
         ],
+      canActivate: [AuthGuard],
     },
 ];
 

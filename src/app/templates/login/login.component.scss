@@ -5,6 +5,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url("../../../assets/images/background.png");
+  background-size: cover;
 }
 
 .login-block {
@@ -66,6 +68,9 @@
 .btn1 {
   margin-top: 30px;
   box-shadow: 1px 2px 11px 0px #9E9E9E;
+  color: #fff;
+  background-color: #1ECD97;
+  border-radius: 35px;
 }
 
 .image {
@@ -78,6 +83,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 83%;
 }
 
 .head {
@@ -85,4 +91,15 @@
   font-family: 'Prompt', sans-serif;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.show {
+  animation-name: shake;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  outline: none;
+  border-color: #C0392B;
+  box-shadow: 0 0 10px #C0392B;
 }

@@ -1,11 +1,13 @@
 import {Injectable} from '@angular/core';
 import {API_URL} from './shared/api.constant';
 import {AppService} from './app.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ApiService {
 
-    constructor(private http: AppService) {
+    constructor(private http: AppService,
+                private router: Router) {
     }
 
     getTable(params?) {
@@ -38,7 +40,8 @@ export class ApiService {
     }
 
     logout() {
-        localStorage.removeItem('user');
+        localStorage.clear();
+        this.router.navigate(['/login']);
     }
 
     // refreshToken(currentToken) {

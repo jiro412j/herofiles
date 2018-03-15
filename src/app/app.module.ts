@@ -11,6 +11,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import {ApiService} from './api.service';
 import {AppService} from './app.service';
+import { AuthGuard } from './auth-guard.service';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import {AppService} from './app.service';
     RouterModule,
     NgbModule.forRoot(),
   ],
-  providers: [AppService, ApiService],
+  providers: [AppService, ApiService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
