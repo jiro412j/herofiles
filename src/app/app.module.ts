@@ -1,14 +1,15 @@
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppComponent } from './app.component';
-import { TemplatesModule } from './templates/templates.module';
-import { RouterModule } from '@angular/router';
-import { routing } from './app.routes';
-import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+
 import { ApiService } from './api.service';
 import { HttpClientService } from './shared/http-client.service';
+import { AuthGuard } from './auth-guard.service';
+import { AppComponent } from './app.component';
+import { routing } from './app.routes';
+import { TemplatesModule } from './templates/templates.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientService } from './shared/http-client.service';
   ],
   providers: [
     HttpClientService,
-    ApiService
+    ApiService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

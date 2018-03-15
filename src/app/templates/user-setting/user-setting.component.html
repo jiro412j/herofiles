@@ -1,64 +1,135 @@
 <div class="row" style="margin-top: 10px">
-    <div class="col-md-6">
-        <h1 class="font-setting">USER SETTING</h1>
-    </div>
+  <div class="col-md-6">
+    <h1 class="font-setting">USER SETTING</h1>
+  </div>
 </div>
 
 <div class="" style="margin-top: 10px">
-    <tabset>
-        <tab heading="Permission Setting" (select)="permission()"></tab>
-        <tab heading="Create Groups" (select)="groups()"></tab>
-        <tab heading="User Setting" (select)="user()"></tab>
-    </tabset>
+  <tabset>
+    <tab heading="Permission Setting" (select)="permission()"></tab>
+    <tab heading="Create Groups" (select)="groups()"></tab>
+    <tab heading="User Setting" (select)="user()"></tab>
+  </tabset>
 </div>
 
 <div class="row" style="margin-top: 2%">
-    <div class="col-md-6 search-box">
-        <form class="form-inline">
-            <input class="form-control mr-sm-2 table-search" type="search" placeholder="Search" aria-label="Search"
-                   name="Search">
-            <button class="btn btn-primary my-2 my-sm-0 search-icon" type="submit">
-                <i class="fas fa-search"></i>
-            </button>
-        </form>
-    </div>
-    <div class="col-md-6 button-right">
-        <button class="btn btn-success btn-document"><img
-                src="../../../assets/images/file.png" style="margin-right: 5px ">Permission Setting
-        </button>
-    </div>
+  <div class="col-md-6 search-box">
+    <form class="form-inline">
+      <input class="form-control mr-sm-2 table-search" type="search" placeholder="Search" aria-label="Search"
+             name="Search">
+      <button class="btn btn-primary my-2 my-sm-0 search-icon" type="submit">
+        <i class="fas fa-search"></i>
+      </button>
+    </form>
+  </div>
+  <div class="col-md-6 button-right">
+    <button *ngIf="first" class="btn btn-success btn-document" (click)="permissionsetting()"><img
+        src="../../../assets/images/file.png" style="margin-right: 5px ">Permission Setting
+    </button>
+    <button *ngIf="second" class="btn btn-success btn-document"><img
+        src="../../../assets/images/file.png" style="margin-right: 5px ">Group Setting
+    </button>
+    <button *ngIf="third" class="btn btn-success btn-document"><img
+        src="../../../assets/images/file.png" style="margin-right: 5px ">User Setting
+    </button>
+  </div>
 </div>
 
 <div class="row" style="margin-top: 2%">
-    <div class="col-md-12" *ngIf="first">
-        <table class="table table-striped table-bordered">
-            <thead>
-            <tr>
-                <th class="table-head" scope="col">Number</th>
-                <th class="table-head" scope="col">Permission Name</th>
-                <th class="table-head" scope="col">Permission role</th>
-                <th class="table-head" scope="col">Edit</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let data of data">
-                <td class="table-col1">{{data.id}}</td>
-                <td class="table-col2">{{data.Document_New}}</td>
-                <td class="table-col3">{{data.Document_Detail}}</td>
-                <td class="table-col2">
-                    <div *ngFor="let field of data.field">
-                        <span class="badge badge-pill badge-info">{{field.name}}</span>
-                    </div>
-                </td>
-                <td class="table-col3">
-                    <div *ngFor="let field of data.field">
-                        <span class="badge badge-pill badge-secondary">{{field.condition}}</span>
-                    </div>
-                </td>
-                <td class="table-col4"></td>
-                <td class="table-col5"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="col-md-12" *ngIf="first">
+    <table class="table table-striped table-bordered">
+      <thead>
+      <tr>
+        <th class="table-head" scope="col">Number</th>
+        <th class="table-head" scope="col">Permission Name</th>
+        <th class="table-head" scope="col">Permission role</th>
+        <th class="table-head" scope="col">Edit</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of data">
+        <td class="table-col1">{{data.id}}</td>
+        <td class="table-col2">{{data.Document_New}}</td>
+        <td class="table-col3">{{data.Document_Detail}}</td>
+        <td class="table-col2">
+          <div *ngFor="let field of data.field">
+            <span class="badge badge-pill badge-info">{{field.name}}</span>
+          </div>
+        </td>
+        <td class="table-col3">
+          <div *ngFor="let field of data.field">
+            <span class="badge badge-pill badge-secondary">{{field.condition}}</span>
+          </div>
+        </td>
+        <td class="table-col4"></td>
+        <td class="table-col5"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-12" *ngIf="second">
+    <table class="table table-striped table-bordered">
+      <thead>
+      <tr>
+        <th class="table-head" scope="col">Number</th>
+        <th class="table-head" scope="col">Group Name</th>
+        <th class="table-head" scope="col">Sub Group Name</th>
+        <th class="table-head" scope="col">Edit</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of data">
+        <td class="table-col1">{{data.id}}</td>
+        <td class="table-col2">{{data.Document_New}}</td>
+        <td class="table-col3">{{data.Document_Detail}}</td>
+        <td class="table-col2">
+          <div *ngFor="let field of data.field">
+            <span class="badge badge-pill badge-info">{{field.name}}</span>
+          </div>
+        </td>
+        <td class="table-col3">
+          <div *ngFor="let field of data.field">
+            <span class="badge badge-pill badge-secondary">{{field.condition}}</span>
+          </div>
+        </td>
+        <td class="table-col4"></td>
+        <td class="table-col5"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-12" *ngIf="third">
+    <table class="table table-striped table-bordered">
+      <thead>
+      <tr>
+        <th class="table-head" scope="col">Number</th>
+        <th class="table-head" scope="col">Full Name</th>
+        <th class="table-head" scope="col">Username</th>
+        <th class="table-head" scope="col">Department</th>
+        <th class="table-head" scope="col">Permission</th>
+        <th class="table-head" scope="col">Status</th>
+        <th class="table-head" scope="col">Edit</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of data">
+        <td class="table-col1">{{data.id}}</td>
+        <td class="table-col2">{{data.Document_New}}</td>
+        <td class="table-col3">{{data.Document_Detail}}</td>
+        <td class="table-col2">
+          <div *ngFor="let field of data.field">
+            <span class="badge badge-pill badge-info">{{field.name}}</span>
+          </div>
+        </td>
+        <td class="table-col3">
+          <div *ngFor="let field of data.field">
+            <span class="badge badge-pill badge-secondary">{{field.condition}}</span>
+          </div>
+        </td>
+        <td class="table-col4"></td>
+        <td class="table-col5"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

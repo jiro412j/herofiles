@@ -1,18 +1,10 @@
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { DATA } from '../../shared/mock.data';
-import { Message, SelectItem } from 'primeng/api';
-import { HttpClient } from '@angular/common/http';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Message } from 'primeng/api';
+import { HttpParams } from '@angular/common/http';
 import * as _ from 'lodash';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { ApiService } from '../../api.service';
-
-
-interface City {
-  name: string;
-  code: string;
-}
 
 @Component({
   selector: 'app-homepage',
@@ -25,8 +17,6 @@ export class HomepageComponent implements OnInit {
   @ViewChild('content') public content: ElementRef;
 
   cities1: any[] = [];
-  selectedCity1 = [];
-  dropTitle = [];
   Field: any[] = [];
   selectedFieldList = [];
   list = [];
@@ -34,18 +24,14 @@ export class HomepageComponent implements OnInit {
   totalItems: number;
   modal: NgbModalRef;
   input: any;
-  currentPage: number;
-  dataTable: any;
+  currentPage = 1;
   documentType: any;
   documentDetail: any;
-  companyInitial: any;
   fieldValue: any;
-  companyNew: any;
   fieldName: any;
   fieldCondition: any;
   title: any;
   req: any;
-  fieldValueBack: any;
   FieldLength: any;
 
   showSecond = false;
@@ -53,8 +39,6 @@ export class HomepageComponent implements OnInit {
   showThird = false;
   documentList = true;
   companyList = false;
-  addtable = false;
-  hideCheckbox = false;
 
   public data: any[];
 
@@ -117,93 +101,49 @@ export class HomepageComponent implements OnInit {
     this.apiService.getTable()
         .subscribe(
             (response: any) => {
-              this.totalItems = response.length;
+              this.totalItems = response.count;
+              console.log('total', this.totalItems);
             }
         );
     this.apiService.getTable()
         .subscribe(
             (response: any) => {
-              this.data = response;
+              this.data = response.results;
+              console.log('data', this.data);
             }
         );
-    // this.http.get('http://localhost:3000/templates?_field')
-    //     .subscribe(
-    //         (res: any) => {
-    //             this.FieldLength = res.length;
-    //             console.log('this', res);
-    //         }
-    //     );
   }
 
   open(content) {
+    this.showFirst = true;
+    this.showSecond = false;
     this.modal = this.modalService.open(this.content, {size: 'lg', windowClass: 'set-while-space'});
     this.loadField();
   }
 
-  renderButtons(instance, td, row, col, prop, value, cellProperties) {
-    td.innerHTML = '<a href="google.com"><img src=\"../../../assets/images/edit.png\"></a>';
-    td.style.textAlign = 'center';
-  }
-
-  // postSort(index) {
-  //   console.log('select', this.selectedCity1[index]);
-  //   this.http.get('http://localhost:3000/templates')
-  //     .subscribe(
-  //       (response: any) => {
-  //         this.totalItems = response.length;
-  //       }
-  //     );
-  //   this.http.get('http://localhost:3000/templates?_sort=' + this.selectedCity1[index] + '&_order=desc' + '&_page=' + this.currentPage)
-  //     .subscribe(
-  //       (response: any) => {
-  //         this.data = response;
-  //       }
-  //     );
-  // }
-
-  pageChanged(event: any) {
-    // this.page = 1;
-    this.currentPage = event.page;
-    console.log('t', this.currentPage);
-    this.apiService.getTable()
+  pageChanged() {
+    const params = new HttpParams().set('page', _.toString(this.currentPage));
+    console.log('page', params);
+    this.apiService.getTable(params)
         .subscribe(
             (response: any) => {
-              this.data = response;
+              this.data = response.results;
+              console.log('page', this.data);
             }
         );
-    // this.http.get('http://localhost:3000/templates?_sort=' + this.selectedCity1 + '&_order=asc' + '&_page=' + this.currentPage)
-    //     .subscribe(
-    //         (response: any) => {
-    //             this.data = response;
-    //         }
-    //     );
   }
 
   search() {
-    // this.http.get('http://localhost:3000/templates')
-    //   .subscribe(
-    //     (response: any) => {
-    //       this.totalItems = response.length;
-    //     }
-    //   );
-    // this.apiService.get('http://192.168.100.235:8000/api/document_setting/' + this.currentPage + '&q=' + this.input)
-    //     .subscribe(
-    //         (response: any) => {
-    //             this.data = response;
-    //             this.http.get('http://localhost:3000/templates?q=' + this.input)
-    //                 .subscribe(
-    //                     (a: any) => {
-    //                         this.totalItems = a.length;
-    //                     }
-    //                 );
-    //             console.log('search', response);
-    //         }
-    //     );
+    const params = new HttpParams().set('search', this.input);
+    console.log('par', params);
+    this.apiService.getTable(params)
+        .subscribe(
+            (response: any) => {
+              this.data = response.results;
+              console.log('search', this.data);
+            }
+        );
   }
-
-  // openModal(lgModal: TemplateRef<any>) {
-  //   this.modalRef = this.modalService.show(lgModal);
-  // }
 
   showSecondModel() {
     this.showSecond = true;
@@ -250,54 +190,24 @@ export class HomepageComponent implements OnInit {
         );
   }
 
-  // loadTable() {
-  //     this.apiService.get('http://localhost:3000/table')
-  //         .subscribe(
-  //             (res: any) => {
-  //                 this.dataTable = res;
-  //                 console.log('kim', res[0].data);
-  //                 _.forEach(res[0].data, (item) => {
-  //                     console.log('load', item);
-  //                     this.dropTitle.push({label: item.label, value: item.value});
-  //                     console.log('loadttile', this.dropTitle);
-  //                 });
-  //             }
-  //         );
-  // }
-
   loadField() {
     this.apiService.getField()
         .subscribe(
             (data: any) => {
-              this.Field = data;
+              this.Field = this.checkDuplicateField(data);
               this.FieldLength = data.length;
               console.log('this.a', this.FieldLength);
             }
         );
   }
 
-  addTable(index) {
-    // this.addtable = true;
-    // this.apiService.get('http://localhost:3000/table/' + index)
-    //     .subscribe(
-    //         (res: any) => {
-    //             this.dropTitle.push({label: res.label, value: res.value});
-    //             // this.dropAdd = Object.assign({}, object1);
-    //             console.log('res', res);
-    //         }
-    //     );
-  }
-
-  removeTable(index) {
-    // const array = this.dataTable.indexOf(index);
-    // this.dataTable.splice(array, 1);
-    // // this.http.delete('http://localhost:3000/table/' + index)
-    // //   .subscribe(
-    // //     (res: any) => {
-    // //       console.log('res', res);
-    // this.loadTable();
-    // }
-    // );
+  checkDuplicateField(field) {
+    if (_.isEmpty(this.selectedFieldList)) {
+      return field;
+    } else {
+      const filteredField = _.differenceBy(field, this.selectedFieldList, 'id');
+      return filteredField;
+    }
   }
 
   saveData() {
@@ -314,17 +224,12 @@ export class HomepageComponent implements OnInit {
               this.apiService.getTable()
                   .subscribe(
                       (response: any) => {
-                        this.totalItems = response.length;
+                        this.totalItems = response.counts;
                         _.forEach(response.table, (item) => {
                           this.title.push(item.id);
                           console.log('daf', this.title);
                         });
-                      }
-                  );
-              this.apiService.getTable()
-                  .subscribe(
-                      (response: any) => {
-                        this.data = response;
+                        this.data = response.results;
                       }
                   );
             }
@@ -337,17 +242,9 @@ export class HomepageComponent implements OnInit {
     console.log('asdfasf');
   }
 
-  company() {
-    this.companyList = true;
-    this.documentList = false;
-  }
-
   reset() {
     this.documentType = '';
     this.documentDetail = '';
-    this.companyNew = '';
-    this.companyInitial = '';
-    this.dropTitle = [];
-    this.dataTable = '';
+    this.selectedFieldList = [];
   }
 }

@@ -8,8 +8,8 @@ export class ApiService {
   constructor(private http: HttpClientService) {
   }
 
-  getTable() {
-    return this.http.get(API_URL.table);
+  getTable(params?) {
+    return this.http.get(API_URL.table, params);
   }
 
   deleteFields(id) {
@@ -40,8 +40,4 @@ export class ApiService {
   logout() {
     localStorage.removeItem('user');
   }
-
-  // refreshToken(currentToken) {
-  //     return this.http.post(API_URL.refresh_token, {token: currentToken});
-  // }
 }

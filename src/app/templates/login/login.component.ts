@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { Router } from '@angular/router';
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -11,9 +12,8 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
-  errorValidation = false;
-  isLoading = false;
-  errorMsg = false;
+  showError = false;
+  msgs: Message[] = [];
 
   constructor(private router: Router,
               private apiService: ApiService) {
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.showError = false;
     this.apiService.login(this.username, this.password)
         .subscribe(
             (data: any) => {
@@ -30,11 +31,12 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['/homepage']);
             },
             (error) => {
-              this.isLoading = false;
-              this.errorValidation = true;
-              this.errorMsg = false;
+              this.showError = true;
+              this.msgs = [];
+              this.msgs.push({severity: 'info', summary: 'Error:', detail: 'Wrong Username or Password'});
               this.router.navigate(['/login']);
             }
         );
   }
+
 }
