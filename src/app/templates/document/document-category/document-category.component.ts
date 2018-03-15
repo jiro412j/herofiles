@@ -20,7 +20,6 @@ export class DocumentCategoryComponent implements OnInit {
   getDocumentType() {
     this.docService.getDocumentType().subscribe(
         (documents: any) => {
-          console.log(documents.results);
           this.categories = documents.results;
         }
     );
