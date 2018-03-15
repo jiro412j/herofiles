@@ -8,18 +8,21 @@ export class AppService {
   headers;
 
   constructor(private http: HttpClient) {
-      this.headerFunction();
+    this.headerFunction();
   }
+
   headerFunction() {
     this.headers = new HttpHeaders().set('Authorization', 'JWT' + ' ' + localStorage.getItem('user'));
   }
 
   post(url, data) {
+    this.headerFunction();
     return this.http.post(url, data, {headers: this.headers});
   }
 
   get(url, params?) {
-    return this.http.get(url, {headers: this.headers});
+    this.headerFunction();
+    return this.http.get(url, {params: params, headers: this.headers});
   }
 
   put(url, data) {

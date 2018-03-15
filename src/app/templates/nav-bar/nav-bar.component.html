@@ -35,30 +35,16 @@
     <ul>
       <li class="navbar-logo" routerLinkActive="">
         <a class="icon-desktop-logo" [routerLink]="['']">
-          <!--<img src="../../../assets/images/price-tag.png">-->
-          <img src="../../../assets/images/superhero2.png">
-          <!--<i class="fas fa-4x fa-tags" aria-hidden="true"></i>-->
-          <div>HERO</div>
+          <span style="font-weight: 700; font-size: 16px; font-family: 'Roboto', sans-serif; margin-left: 16px ">HERO
+            <img class="" style="width: 27%" src="../../../assets/images/folder.png"/>
+          </span>
+          <span style="font-weight: 700; font-size: 26px">FILES</span>
+          <!--<img src="../../../assets/images/superhero2.png">-->
+          <!--<div style="font-size: 25px;font-weight: 300;">HERO</div>-->
         </a>
       </li>
     </ul>
     <ul>
-      <!--<li class="navbar-profile" routerLinkActive="">-->
-        <!--<a class="icon-desktop" [routerLink]="['']">-->
-          <!--&lt;!&ndash;<img src="../../../assets/images/price-tag.png">&ndash;&gt;-->
-          <!--<img src="../../../assets/images/user.png">-->
-          <!--&lt;!&ndash;<i class="fas fa-4x fa-tags" aria-hidden="true"></i>&ndash;&gt;-->
-          <!--<div class="icon-margin">User</div>-->
-        <!--</a>-->
-      <!--</li>-->
-      <!--<li  class="icon-desktop" routerLinkActive="">-->
-        <!--<a class="icon-desktop" [routerLink]="['']">-->
-          <!--&lt;!&ndash;<img src="../../../assets/images/price-tag.png">&ndash;&gt;-->
-          <!--<img src="../../../assets/images/speedometer.png">-->
-          <!--&lt;!&ndash;<i class="fas fa-4x fa-tags" aria-hidden="true"></i>&ndash;&gt;-->
-          <!--<div class="icon-margin">Dashboard</div>-->
-        <!--</a>-->
-      <!--</li>-->
       <li class="icon-desktop" routerLinkActive="">
         <a class="icon-desktop" [routerLink]="['']">
           <img src="../../../assets/images/contract.png">
@@ -67,13 +53,6 @@
           <div class="icon-margin">Documents</div>
         </a>
       </li>
-      <!--<li routerLinkActive="active-li">-->
-        <!--<a class="icon-desktop" [routerLink]="['']">-->
-          <!--&lt;!&ndash;<i class="far fa-4x	fa-file"></i>&ndash;&gt;-->
-          <!--<img src="../../../assets/images/templates.png">-->
-          <!--<div>Templates</div>-->
-        <!--</a>-->
-      <!--</li>-->
       <li class="icon-desktop" routerLinkActive="">
         <a class="icon-desktop" [routerLink]="['']">
           <img src="../../../assets/images/clock.png">
@@ -97,10 +76,12 @@
           <div class="icon-margin">User Settings</div>
         </a>
       </li>
-       <li>
-        <a [routerLink]="['/login']" (click)="logout()">
-          <i class="fa fa-sign-out m-r-5"></i>
-          Logout
+      <li class="icon-desktop" routerLinkActive="active-li" (click)="logout()">
+        <a class="icon-desktop">
+          <img src="../../../assets/images/logout.png">
+
+          <!--<i class="far fa-4x fa-clock"></i>-->
+          <div class="icon-margin">Logout</div>
         </a>
       </li>
     </ul>

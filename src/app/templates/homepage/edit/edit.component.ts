@@ -13,7 +13,7 @@ import {ApiService} from '../../../api.service';
     styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
-    @ViewChild('content') public content: ElementRef;
+    @ViewChild('editcontent') public editcontent: ElementRef;
 
     cities1: any[] = [];
     selectedCity1 = [];
@@ -58,7 +58,6 @@ export class EditComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loadInput();
         this.cities1 = [
             {
                 label: 'Select Condition',
@@ -126,75 +125,14 @@ export class EditComponent implements OnInit {
         });
     }
 
-    loadInput() {
-        this.appService.getTable()
-            .subscribe(
-                (response: any) => {
-                    this.totalItems = response.length;
-                }
-            );
-        this.appService.getTable()
-            .subscribe(
-                (response: any) => {
-                    this.data = response;
-                }
-            );
-        // this.http.get('http://localhost:3000/templates?_field')
-        //     .subscribe(
-        //         (res: any) => {
-        //             this.FieldLength = res.length;
-        //             console.log('this', res);
-        //         }
-        //     );
-    }
 
-    open(content) {
-        this.modal = this.modalService.open(this.content, {size: 'lg', windowClass: 'set-while-space'});
+
+    open(editcontent) {
+        this.showFirst = true;
+        this.showSecond = false;
+        this.modal = this.modalService.open(this.editcontent, {size: 'lg', windowClass: 'set-while-space'});
         this.loadField();
     }
-
-    pageChanged(event: any) {
-        // this.page = 1;
-        this.currentPage = event.page;
-        this.appService.getTable()
-            .subscribe(
-                (response: any) => {
-                    this.data = response;
-                }
-            );
-        // this.appService.get('http://localhost:3000/templates?_sort=' + this.selectedCity1 + '&_order=asc' + '&_page=' + this.currentPage)
-        //     .subscribe(
-        //         (response: any) => {
-        //             this.data = response;
-        //         }
-        //     );
-    }
-
-    search() {
-        // this.http.get('http://localhost:3000/templates')
-        //   .subscribe(
-        //     (response: any) => {
-        //       this.totalItems = response.length;
-        //     }
-        //   );
-        // this.appService.get('http://localhost:3000/templates?_page=' + this.currentPage + '&q=' + this.input)
-        //     .subscribe(
-        //         (response: any) => {
-        //             this.data = response;
-        //             this.appService.get('http://localhost:3000/templates?q=' + this.input)
-        //                 .subscribe(
-        //                     (a: any) => {
-        //                         this.totalItems = a.length;
-        //                     }
-        //                 );
-        //             console.log('search', response);
-        //         }
-        //     );
-    }
-
-    // openModal(lgModal: TemplateRef<any>) {
-    //   this.modalRef = this.modalService.show(lgModal);
-    // }
 
     showSecondModel() {
         this.showSecond = true;
@@ -259,7 +197,7 @@ export class EditComponent implements OnInit {
         this.appService.putField( this.UpdateDetail.id, data)
             .subscribe(
                 (res: any) => {
-                    this.modal.close();
+                    this.modal.close(this.editcontent);
                     this.reset();
                     this.appService.getTable()
                         .subscribe(

@@ -1,10 +1,12 @@
 .background {
   width: 100vw;
   height: 100vh;
-  background-color: #ADADAD;
+  background-color: #22353e;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url("../../../assets/images/background.png");
+  background-size: cover;
 }
 
 .login-block {
@@ -12,6 +14,7 @@
   width: 1060px;
   height: 600px;
   background-color: #fefefe;
+  box-shadow: 1px 2px 11px 0px #9E9E9E;
 }
 
 .side1 {
@@ -20,6 +23,8 @@
 }
 
 .side2 {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .style1 {
@@ -41,6 +46,12 @@
   border-bottom: 2px solid #153343;
 }
 
+.form2 {
+  border: none;
+  border-bottom: 2px solid #153343;
+  margin-top: 31px;
+}
+
 .user {
   display: flex;
   justify-content: center;
@@ -56,7 +67,10 @@
 
 .btn1 {
   margin-top: 30px;
-
+  box-shadow: 1px 2px 11px 0px #9E9E9E;
+  color: #fff;
+  background-color: #1ECD97;
+  border-radius: 35px;
 }
 
 .image {
@@ -69,6 +83,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 83%;
 }
 
 .head {
@@ -76,4 +91,15 @@
   font-family: 'Prompt', sans-serif;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.show {
+  animation-name: shake;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  outline: none;
+  border-color: #C0392B;
+  box-shadow: 0 0 10px #C0392B;
 }

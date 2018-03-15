@@ -14,6 +14,7 @@ import {UserSettingComponent} from './user-setting/user-setting.component';
 import {UserSettingModule} from './user-setting/user-setting.module';
 import { LoginComponent } from './login/login.component';
 import {FormsModule} from '@angular/forms';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
     imports: [
@@ -22,6 +23,7 @@ import {FormsModule} from '@angular/forms';
         HomepageModule,
         FormsModule,
         UserSettingModule,
+        LoginModule,
         BrowserAnimationsModule,
         RouterModule,
         TemplatesRoutingModule,
@@ -30,7 +32,6 @@ import {FormsModule} from '@angular/forms';
         TemplatesComponent,
         NavBarComponent,
         SidebarComponent,
-        LoginComponent,
     ]
 })
 export class TemplatesModule {

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-6">
-      <ng-template #content let-c="close" let-d="dismiss">
+      <ng-template #editcontent let-c="close" let-d="dismiss">
         <div class="modal-header">
           <h4 class="modal-title" style="color: #ffffff;">Document Setting</h4>
           <button type="button" class="close" aria-label="Close" (click)="c('Cross click')">
@@ -214,6 +214,6 @@
     </div>
   </div>
 
-<button class="btn btn-primary btn-sm" (click)="open(content)" >
-<i class="fas fa-pencil-alt" (click)="open(content)"></i>
+<button class="btn btn-primary btn-sm" (click)="open(editcontent)" >
+<i class="fas fa-pencil-alt"></i>
 </button>
